@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Château de la Vigne | Muzeum vína</title>
-<!-- Opravená cesta k CSS -->
+<!-- CSS -->
 <link rel="stylesheet" href="style.css">
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
@@ -57,7 +57,7 @@
     <h2>Prémiové zážitky</h2>
     <div class="carousel-container">
         <div class="carousel-slide active">
-          <img src="images/vilarnau.jpg" alt="Degustace" />
+            <img src="img/premium1.jpg" alt="Degustace" />
             <div class="carousel-caption">
                 <h3>Archivní sklepy králů</h3>
                 <p>Exkluzivní prohlídka prostor, kam běžný návštěvník nesmí.</p>
@@ -77,6 +77,7 @@
 
 <!-- Rezervace/Vstupenky -->
 <section id="rezervace" class="booking">
+    <h2>Objednat vstupenky</h2>
     <div class="booking-wrapper">
         <div class="ticket-preview">
             <div class="ticket-card">
@@ -90,8 +91,7 @@
             </div>
         </div>
         <div class="booking-form">
-            <h2>Objednat vstupenky</h2>
-           <form id="booking-form">
+            <form id="booking-form">
                 <input type="text" name="name" placeholder="Jméno a příjmení" required />
                 <input type="email" name="email" placeholder="E-mail" required />
                 <div class="form-row">
@@ -115,11 +115,35 @@
         <h3>Často kladené dotazy</h3>
         <details>
             <summary>Je v ceně vstupenky degustace?</summary>
-            <p>Degustace je součástí balíčku "Premium". U základního vstupného lze dokoupit na místě.</p>
+            <p>Degustace je součástí balíčku "Premium". U základního vstupného lze dokoupit na místě za dodatečný poplatek 150 Kč.</p>
         </details>
         <details>
             <summary>Máte bezbariérový přístup?</summary>
-            <p>Ano, celé muzeum včetně historických sklepů je přístupné výtahem.</p>
+            <p>Ano, celé muzeum včetně historických sklepů je přístupné výtahem. Máme i sociální zařízení pro osoby se zdravotním postižením.</p>
+        </details>
+        <details>
+            <summary>Jaká je doba trvání prohlídky?</summary>
+            <p>Standardní prohlídka trvá přibližně 2 hodiny. Prémiová prohlídka s degustací trvá 3-4 hodiny. Skupinové prohlídky lze domluvit individuálně.</p>
+        </details>
+        <details>
+            <summary>Je možné si koupit víno v muzeu?</summary>
+            <p>Ano, v našem obchodu prodáváme výběr vín z místních vinařství. Příslušníci skupin mohou získat slevu 10%.</p>
+        </details>
+        <details>
+            <summary>Lze sem přijít s dětmi?</summary>
+            <p>Děti do 6 let mají vstup zdarma. Pro děti od 7 do 15 let nabízíme zvýhodněnou cenu 100 Kč. Máme také dětský edukační program.</p>
+        </details>
+        <details>
+            <summary>Jak se rezervují skupiny?</summary>
+            <p>Skupiny od 10 osob prosím rezervujte minimálně 2 týdny předem na email: groups@chateaudelavigne.cz. Skupiny dostávají slevu 15%.</p>
+        </details>
+        <details>
+            <summary>Jaké jsou otevírací hodiny?</summary>
+            <p>Otevřeno úterý - neděle, 10:00 - 18:00. V pondělí jsme zavřeni. V letních měsících (červen-srpen) otevřeno denně.</p>
+        </details>
+        <details>
+            <summary>Jak se dostaneme do muzea?</summary>
+            <p>Muzeum se nachází v Valtici. Lze se sem dostat autem (volné parkoviště), vlakem (zastávka Valtice) nebo autobusem. Nejbližší letiště je Brno (50 km).</p>
         </details>
     </div>
     <div class="reviews">
@@ -128,10 +152,17 @@
             <p>"Nádherné spojení historie a moderní architektury. Stroje na lisování vína jsou fascinující!"</p>
             <span>- Jana M., 2026</span>
         </div>
-
         <div class="review-item">
             <p>"Skvělá atmosféra a výborné víno. Určitě se vrátíme!"</p>
             <span>- Petr K., 2026</span>
+        </div>
+        <div class="review-item">
+            <p>"Průvodce byl velmi erudovaný a zajímavý. Doporučuji všem vinařským nadšencům!"</p>
+            <span>- Maria S., 2026</span>
+        </div>
+        <div class="review-item">
+            <p>"Jednota umění a vinařství. Nejlepší tip pro víkend!"</p>
+            <span>- Tomáš H., 2026</span>
         </div>
     </div>
 </section>
@@ -144,12 +175,10 @@
             <p>Vinařská 12, 691 42 Valtice</p>
             <p>Email: info@chateaudelavigne.cz</p>
             <p>Tel: +420 123 456 789</p>
+            <p>Web: www.chateaudelavigne.cz</p>
         </div>
         <div class="map">
-            <!-- Fiktivní mapa -->
-            <div style="width: 100%; height: 200px; background: #e0e0e0; display:flex; align-items:center; justify-content:center;">
-                <iframe style="border:none" src="https://mapy.com/s/cosamelemo" width="400" height="280" frameborder="0"></iframe>
-            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2549.5632345857996!2d16.99897!3d48.70563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470c394c0e0f0001%3A0x1234567890abcdef!2sVin%C3%A1rsk%C3%A1%2012%2C%20691%2042%20Valtice!5e0!3m2!1scs!2scz!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
     <p class="copy">&copy; 2026 Château de la Vigne. Všechna práva vyhrazena.</p>
