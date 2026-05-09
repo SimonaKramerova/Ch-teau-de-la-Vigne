@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Château de la Vigne | Muzeum vína</title>
 <!-- Opravená cesta k CSS -->
-<link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+<link rel="stylesheet" href="style.css">
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
@@ -46,25 +46,10 @@
     </div>
 </section>
 
-<!-- Expozice z CSV -->
+<!-- Expozice - načtení z JS -->
 <section id="expozice" class="exhibitions">
     <h2>Naše Expozice</h2>
-    <div class="exhibition-grid">
-        <?php
-        if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
-            fgetcsv($handle); // Přeskočit hlavičku
-            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                echo "<div class='ex-card'>";
-                echo "<img src='{$data[3]}' alt='{$data[0]}'>";
-                echo "<h3>{$data[0]}</h3>";
-                echo "<p class='category'>{$data[2]}</p>";
-                echo "<p>{$data[1]}</p>";
-                echo "</div>";
-            }
-            fclose($handle);
-        }
-        ?>
-    </div>
+    <div class="exhibition-grid" id="exhibition-grid"></div>
 </section>
 
 <!-- Carousel - Prémiové výstavy -->
@@ -72,7 +57,7 @@
     <h2>Prémiové zážitky</h2>
     <div class="carousel-container">
         <div class="carousel-slide active">
-            <img src="img/premium1.jpg" alt="Degustace" />
+          <img src="images/vilarnau.jpg" alt="Degustace" />
             <div class="carousel-caption">
                 <h3>Archivní sklepy králů</h3>
                 <p>Exkluzivní prohlídka prostor, kam běžný návštěvník nesmí.</p>
@@ -106,7 +91,7 @@
         </div>
         <div class="booking-form">
             <h2>Objednat vstupenky</h2>
-            <form action="process.php" method="POST">
+           <form id="booking-form">
                 <input type="text" name="name" placeholder="Jméno a příjmení" required />
                 <input type="email" name="email" placeholder="E-mail" required />
                 <div class="form-row">
@@ -143,7 +128,7 @@
             <p>"Nádherné spojení historie a moderní architektury. Stroje na lisování vína jsou fascinující!"</p>
             <span>- Jana M., 2026</span>
         </div>
-        <!-- Přidána další recenze -->
+
         <div class="review-item">
             <p>"Skvělá atmosféra a výborné víno. Určitě se vrátíme!"</p>
             <span>- Petr K., 2026</span>
@@ -163,7 +148,7 @@
         <div class="map">
             <!-- Fiktivní mapa -->
             <div style="width: 100%; height: 200px; background: #e0e0e0; display:flex; align-items:center; justify-content:center;">
-                [ Zde bude Google Map API / Iframe ]
+                <iframe style="border:none" src="https://mapy.com/s/cosamelemo" width="400" height="280" frameborder="0"></iframe>
             </div>
         </div>
     </div>
