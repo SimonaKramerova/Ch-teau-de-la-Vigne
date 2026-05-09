@@ -66,28 +66,28 @@ const ticketData = {
         title: "PROHLÍDKA ZAHRAD",
         name: "GARDEN TOUR 2026",
         price: "250 Kč",
-        image: "img/ticket-gardens.jpg",
+        image: "images/ticket-gardens.jpg",
         bgColor: "#90c695"
     },
     sklepy: {
         title: "SKLEPY & DŮM",
         name: "CHÂTEAU CLASSIC",
         price: "350 Kč",
-        image: "img/ticket-cellar.jpg",
+        image: "images/ticket-cellar.jpg",
         bgColor: "#8b6f47"
     },
     degustace: {
         title: "DEGUSTACE & TVORBA",
         name: "WINE MASTER 2026",
         price: "590 Kč",
-        image: "img/ticket-wine.jpg",
+        image: "images/ticket-wine.jpg",
         bgColor: "#c5a059"
     },
     bonus: {
         title: "VŠE + BONUS PROGRAM",
         name: "PREMIUM EXPERIENCE",
         price: "890 Kč",
-        image: "img/ticket-premium.jpg",
+        image: "images/ticket-premium.jpg",
         bgColor: "#4a5d4e"
     }
 };
@@ -121,9 +121,9 @@ if (ticketTypeSelect) {
 
 // Načítání dat do galerie
 const expoziceData = [
-  ["Antické amfory", "Unikátní sbírka nádob na víno z dob Římské říše.", "Historie", "img/amfory.jpg"],
-  ["Mechanický lis 1890", "Plně funkční stroj z konce 19. století.", "Technika", "img/lis.jpg"],
-  ["Víno a Umění", "Jak víno inspirovalo malíře baroka.", "Kultura", "img/art.jpg"],
+  ["Antické amfory", "Unikátní sbírka nádob na víno z dob Římské říše.", "Historie", "images/Antické amfory.jpg"],
+  ["Mechanický lis 1890", "Plně funkční stroj z konce 19. století.", "Technika", "images/Mechanický lis 1890.jpg"],
+  ["Víno a Umění", "Jak víno inspirovalo malíře baroka.", "Kultura", "images/redwine.jpg"],
 ];
 
 function zobrazExpozice() {
