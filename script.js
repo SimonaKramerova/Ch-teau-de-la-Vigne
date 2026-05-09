@@ -1,5 +1,5 @@
-// Countdown k 15. 5. 2026
-const countdownDate = new Date("May 15, 2026 23:59:59").getTime();
+// Countdown k 15. 6. 2026
+const countdownDate = new Date("June 15, 2026 23:59:59").getTime();
 
 const timer = setInterval(() => {
     const now = new Date().getTime();
@@ -29,7 +29,7 @@ function showSlide(n) {
 document.querySelector('.next').addEventListener('click', () => showSlide(currentSlide + 1));
 document.querySelector('.prev').addEventListener('click', () => showSlide(currentSlide - 1));
 
-// Automatický posun carouselu (volitelně)
+
 setInterval(() => {
     showSlide(currentSlide + 1);
 }, 5000);
@@ -54,56 +54,45 @@ closeBtn.addEventListener('click', () => {
     navLinks.classList.remove('show');
 });
 
-// =======================
-// Načítání CSV nebo Data do JS
-// 1. Pokud máte CSV, načtěte pomocí fetch
-/*
-fetch('expozice.csv')
-  .then(response => response.text())
-  .then(data => {
-    const rows = data.split('\n').slice(1); // přeskočit hlavičku
-    rows.forEach(row => {
-      const columns = row.split(',');
-      // Vytvořit HTML s daty, například:
-      // document.body.innerHTML += `<div>${columns[0]} - ${columns[1]}</div>`;
-    });
-  });
-*/
-
-// 2. Nebo přímo vložte data do JS jako pole
+// Načítání dat do galerie
 const expoziceData = [
-  ["Název výstavy 1", "Popis 1", "Kategorie 1", "img/image1.jpg"],
-  ["Název výstavy 2", "Popis 2", "Kategorie 2", "img/image2.jpg"],
-  // další data...
+  ["Antické amfory", "Unikátní sbírka nádob na víno z dob Římské říše.", "Historie", "img/amfory.jpg"],
+  ["Mechanický lis 1890", "Plně funkční stroj z konce 19. století.", "Technika", "img/lis.jpg"],
+  ["Víno a Umění", "Jak víno inspirovalo malíře baroka.", "Kultura", "img/art.jpg"],
 ];
-
-// Funkce na zobrazení dat (například v galerii)
-function zobrazExpozice() {
-  const container = document.getElementById('expozice-container');
+  const container = document.getElementById('exhibition-grid');
+  if (!container) return; // Bezpečnost - pokud element neexistuje
+  
   expoziceData.forEach(item => {
+    const [nazev, popis, kategorie, obrazek] = item;
     const div = document.createElement('div');
-    div.className = 'expozice-item';
+    div.className = 'ex-card';
+
     div.innerHTML = `
-      <h3>${item[0]}</h3>
-      <p>${item[1]}</p>
-      <p>Kategorie: ${item[2]}</p>
-      <img src="${item[3]}" alt="${item[0]}">
+      <img src="${obrazek}" alt="${nazev}">
+      <h3>${nazev}</h3>
+      <p class="category">${kategorie}</p>
+      <p>${popis}</p>
     `;
     container.appendChild(div);
   });
 }
 
 // Zavolat při načtení stránky
-zobrazExpozice();
+document.addEventListener('DOMContentLoaded', zobrazExpozice);
 
-// 3. Zpracování formuláře v JS
-document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault(); // zabránit odeslání na server
-    const formData = new FormData(this);
-    const data = {};
-    formData.forEach((value, key) => {
-        data[key] = value;
+// Zpracování formuláře
+const bookingForm = document.getElementById('booking-form');
+if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+        alert('Vstupenky byly odeslány! Děkujeme.');
+        // Vymazat formulář
+        this.reset();
     });
-    alert('Vstupenky byly odeslány! Děkujeme.');
-    // Můžeš přidat ukládání do localStorage nebo jiný logický tok
-});
+}
