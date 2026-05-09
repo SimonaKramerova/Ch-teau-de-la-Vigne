@@ -5,14 +5,17 @@ const timer = setInterval(() => {
     const now = new Date().getTime();
     const distance = countdownDate - now;
 
-    document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
-    document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+    // Přidat vedoucí nuly (05 místo 5)
+    const pad = (num) => String(num).padStart(2, '0');
+
+    document.getElementById("days").innerText = pad(Math.floor(distance / (1000 * 60 * 60 * 24)));
+    document.getElementById("hours").innerText = pad(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    document.getElementById("minutes").innerText = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+    document.getElementById("seconds").innerText = pad(Math.floor((distance % (1000 * 60)) / 1000));
 
     if (distance < 0) {
         clearInterval(timer);
-        document.getElementById("countdown").innerHTML = "VÝSTAVA ZAHÁJENA!";
+        document.getElementById("countdown").innerHTML = "<h2>VÝSTAVA ZAHÁJENA!</h2>";
     }
 }, 1000);
 
@@ -29,7 +32,7 @@ function showSlide(n) {
 document.querySelector('.next').addEventListener('click', () => showSlide(currentSlide + 1));
 document.querySelector('.prev').addEventListener('click', () => showSlide(currentSlide - 1));
 
-
+// Automatický posun carouselu
 setInterval(() => {
     showSlide(currentSlide + 1);
 }, 5000);
@@ -60,6 +63,8 @@ const expoziceData = [
   ["Mechanický lis 1890", "Plně funkční stroj z konce 19. století.", "Technika", "img/lis.jpg"],
   ["Víno a Umění", "Jak víno inspirovalo malíře baroka.", "Kultura", "img/art.jpg"],
 ];
+
+function zobrazExpozice() {
   const container = document.getElementById('exhibition-grid');
   if (!container) return; // Bezpečnost - pokud element neexistuje
   
