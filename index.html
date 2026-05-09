@@ -79,27 +79,32 @@
 <section id="rezervace" class="booking">
     <h2>Objednat vstupenky</h2>
     <div class="booking-wrapper">
+        <!-- Náhled vstupenky se DYNAMICKY MĚNÍCÍM OBRÁZKEM -->
         <div class="ticket-preview">
             <div class="ticket-card">
-                <div class="ticket-img"></div>
+                <div class="ticket-img" id="ticket-img"></div>
                 <div class="ticket-info">
-                    <span>05 / 10 / 2026</span>
-                    <h4>ADOLPH FRIEDRICH</h4>
-                    <h3>VINNÁ REVOLUCE</h3>
+                    <span id="ticket-date">05 / 10 / 2026</span>
+                    <h4 id="ticket-name">ADOLPH FRIEDRICH</h4>
+                    <h3 id="ticket-title">VINNÁ REVOLUCE</h3>
+                    <div class="ticket-price" id="ticket-price">250 Kč</div>
                     <div class="barcode">|||| | || ||| | ||</div>
                 </div>
             </div>
         </div>
+        
+        <!-- Formulář -->
         <div class="booking-form">
             <form id="booking-form">
                 <input type="text" name="name" placeholder="Jméno a příjmení" required />
                 <input type="email" name="email" placeholder="E-mail" required />
                 <div class="form-row">
                     <input type="date" name="date" required />
-                    <select name="type">
-                        <option value="zakladni">Základní (250 Kč)</option>
-                        <option value="premium">Premium s degustací (590 Kč)</option>
-                        <option value="student">Student / Senior (150 Kč)</option>
+                    <select name="type" id="ticket-type">
+                        <option value="zahrady">Prohlídka zahrad (250 Kč)</option>
+                        <option value="sklepy">Sklepy & Dům (350 Kč)</option>
+                        <option value="degustace">Degustace & Tvorba vína (590 Kč)</option>
+                        <option value="bonus">Vše + Bonus program (890 Kč)</option>
                     </select>
                 </div>
                 <input type="number" name="count" min="1" placeholder="Počet osob" required />
@@ -115,7 +120,7 @@
         <h3>Často kladené dotazy</h3>
         <details>
             <summary>Je v ceně vstupenky degustace?</summary>
-            <p>Degustace je součástí balíčku "Premium". U základního vstupného lze dokoupit na místě za dodatečný poplatek 150 Kč.</p>
+            <p>Degustace je součástí balíčku "Degustace & Tvorba vína" a "Vše + Bonus program". U základního vstupného lze dokoupit na místě za dodatečný poplatek 150 Kč.</p>
         </details>
         <details>
             <summary>Máte bezbariérový přístup?</summary>
@@ -123,7 +128,7 @@
         </details>
         <details>
             <summary>Jaká je doba trvání prohlídky?</summary>
-            <p>Standardní prohlídka trvá přibližně 2 hodiny. Prémiová prohlídka s degustací trvá 3-4 hodiny. Skupinové prohlídky lze domluvit individuálně.</p>
+            <p>Prohlídka zahrad trvá 1-2 hodiny. Sklepy & Dům trvají 2 hodiny. Degustace & Tvorba vína trvá 3-4 hodiny. Bonus program trvá 5-6 hodin.</p>
         </details>
         <details>
             <summary>Je možné si koupit víno v muzeu?</summary>
