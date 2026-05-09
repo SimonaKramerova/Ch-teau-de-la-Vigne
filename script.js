@@ -57,6 +57,68 @@ closeBtn.addEventListener('click', () => {
     navLinks.classList.remove('show');
 });
 
+// =======================
+// VSTUPENKY - INTERAKTIVNÍ SYSTÉM
+// =======================
+
+const ticketData = {
+    zahrady: {
+        title: "PROHLÍDKA ZAHRAD",
+        name: "GARDEN TOUR 2026",
+        price: "250 Kč",
+        image: "img/ticket-gardens.jpg",
+        bgColor: "#90c695"
+    },
+    sklepy: {
+        title: "SKLEPY & DŮM",
+        name: "CHÂTEAU CLASSIC",
+        price: "350 Kč",
+        image: "img/ticket-cellar.jpg",
+        bgColor: "#8b6f47"
+    },
+    degustace: {
+        title: "DEGUSTACE & TVORBA",
+        name: "WINE MASTER 2026",
+        price: "590 Kč",
+        image: "img/ticket-wine.jpg",
+        bgColor: "#c5a059"
+    },
+    bonus: {
+        title: "VŠE + BONUS PROGRAM",
+        name: "PREMIUM EXPERIENCE",
+        price: "890 Kč",
+        image: "img/ticket-premium.jpg",
+        bgColor: "#4a5d4e"
+    }
+};
+
+// Funkce na aktualizaci vstupenky
+function updateTicket() {
+    const selectedType = document.getElementById('ticket-type').value;
+    const data = ticketData[selectedType];
+    
+    // Aktualizovat obrázek
+    const ticketImg = document.getElementById('ticket-img');
+    ticketImg.style.backgroundImage = `url('${data.image}')`;
+    
+    // Aktualizovat text
+    document.getElementById('ticket-title').textContent = data.title;
+    document.getElementById('ticket-name').textContent = data.name;
+    document.getElementById('ticket-price').textContent = data.price;
+    
+    // Aktualizovat barvu pozadí karty
+    const ticketCard = document.querySelector('.ticket-card');
+    ticketCard.style.backgroundColor = data.bgColor;
+}
+
+// Nasloucha změně v selectu
+const ticketTypeSelect = document.getElementById('ticket-type');
+if (ticketTypeSelect) {
+    ticketTypeSelect.addEventListener('change', updateTicket);
+    // Inicializace při načtení stránky
+    updateTicket();
+}
+
 // Načítání dat do galerie
 const expoziceData = [
   ["Antické amfory", "Unikátní sbírka nádob na víno z dob Římské říše.", "Historie", "img/amfory.jpg"],
