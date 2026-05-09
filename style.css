@@ -1,0 +1,358 @@
+:root {
+    --primary: #4a5d4e; /* Olivově zelená z obrázku */
+    --gold: #c5a059;
+    --bg: #fdfaf5; /* Krémové pozadí */
+    --text: #2c2c2c;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Nadpisy */
+h1, h2, h3, .logo {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Sticky menu */
+#navbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: rgba(253, 250, 245, 0.95);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    transition: max-height 0.3s ease;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+    position: relative;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* Burger menu */
+.burger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.close-menu {
+    display: none;
+    font-size: 2rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background: #fff;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+/* Hero sekce */
+.hero {
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/hero-wine.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    background-color: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+/* Sekce countdown */
+.countdown-section {
+    padding: 2rem 0;
+    background: var(--primary);
+    color: #fff;
+    text-align: center;
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.time-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.time-part span {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* Expozice grid */
+.exhibition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 5%;
+}
+
+.ex-card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+.ex-card:hover {
+    transform: translateY(-5px);
+}
+.ex-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.category {
+    font-size: 0.9rem;
+    color: var(--primary);
+    margin-top: 0.5rem;
+}
+
+/* Carousel */
+.premium-carousel {
+    padding: 2rem 0;
+    background: #f4f1ea;
+    position: relative;
+    overflow: hidden;
+}
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.carousel-slide {
+    display: none;
+    position: absolute;
+    width: 100%;
+}
+.carousel-slide.active {
+    display: block;
+    position: relative;
+}
+.carousel-slide img {
+    width: 100%;
+    border-radius: 8px;
+}
+.carousel-caption {
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: -50px;
+}
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.3);
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* Rezervace sekce */
+.booking {
+    padding: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background: #f4f1ea;
+}
+.booking-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.ticket-preview {
+    flex: 1 1 300px;
+}
+.ticket-card {
+    background: #d4c4a8;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+    max-width: 350px;
+    margin: 0 auto;
+}
+.ticket-img {
+    height: 250px;
+    background: url('img/art-wine.jpg') center/cover no-repeat;
+}
+.ticket-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+.barcode {
+    margin-top: 1rem;
+    font-family: monospace;
+}
+
+/* Formular */
+.booking-form {
+    flex: 1 1 300px;
+}
+.booking-form h2 {
+    margin-bottom: 1rem;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+form input, form select {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.btn-submit {
+    background-color: var(--primary);
+    color: #fff;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.btn-submit:hover {
+    background-color: #3a4a3a;
+}
+
+/* FAQ & Recenze */
+.info-section {
+    padding: 4rem 2rem;
+}
+.faq {
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+}
+.faq h3 {
+    margin-bottom: 1rem;
+}
+.reviews {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.review-item {
+    background: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.review-item p {
+    font-style: italic;
+}
+.review-item span {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Kontakt a map */
+footer {
+    background: var(--primary);
+    color: #fff;
+    padding: 3rem 2rem;
+}
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.contact-info, .map {
+    flex: 1 1 300px;
+}
+.copy {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+/* Responzivita */
+@media(max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        width: 200px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 4px;
+    }
+    .nav-links.show {
+        max-height: 500px;
+    }
+    .burger {
+        display: block;
+    }
+    .close-menu {
+        display: block;
+        padding: 0.5rem;
+        cursor: pointer;
+        font-size: 2rem;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #fff;
+        border-radius: 4px;
+    }
+    /* Přizpůsobit recenze a sekce na mobilu */
+    .booking-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+}
