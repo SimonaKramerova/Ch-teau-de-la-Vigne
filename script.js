@@ -48,6 +48,36 @@ const exhibitionsData = [
         price: "Zahrnuto ve vstupném",
         fullDesc: "Výstava představuje díla barokních mistrů, kteří nacházeli inspiraci ve víně, hostinách a slavnostech. Originály i reprodukce z evropských sbírek jsou doplněny o odborný komentář k symbolice vína v malířství 17. a 18. století.",
         includes: ["Průvodce výstavou v češtině a angličtině", "Audioprůvodce zdarma", "Workshop malby pro skupiny (na objednávku)", "Katalog výstavy v ceně vstupu"]
+    },
+    {
+        title: "Zlatý výběr 2026",
+        description: "Nejlepší vína letošní sklizně z celé Moravy.",
+        category: "Aktuální",
+        image: "images/sber.jpg",
+        dates: "15. 6. 2026 – 30. 9. 2026",
+        price: "Zahrnuto ve vstupném",
+        fullDesc: "Prestižní přehlídka vín letošní sklizně přináší to nejlepší z moravských vinařství. Odborná porota vybrala přes 80 vzorků z více než 200 přihlášených. Každé víno je opatřeno degustační kartou s popisem aroma, chuti a doporučeného párování s jídlem.",
+        includes: ["Přístup ke všem 80 vybraným vínům", "Degustační sklenička s sebou", "Katalog s hodnocením porotců", "Setkání s vinaři každou sobotu 15:00"]
+    },
+    {
+        title: "Sklepy a jejich tajemství",
+        description: "Podzemní svět, kde zraje víno po staletí.",
+        category: "Architektura",
+        image: "images/uvnitr.jpg",
+        dates: "Stálá expozice",
+        price: "Zahrnuto ve vstupném od 350 Kč",
+        fullDesc: "Historické sklepy châteaux skrývají stovky let starou architekturu a desítky tisíc lahví zrajícího vína. Tato expozice vás provede podzemními chodbami, odhalí tajemství správné teploty a vlhkosti a přiblíží umění šambrování i etiketování prémiových vín.",
+        includes: ["Průchod historickými sklepními chodbami", "Ukázka šambrování vína", "Přístup k archivním ročníkům (bez degustace)", "Fotografování povoleno"]
+    },
+    {
+        title: "Cesta hroznu",
+        description: "Od révy po sklenku — celý výrobní cyklus.",
+        category: "Vzdělávání",
+        image: "images/crushinginoldtimes.jpg",
+        dates: "1. 5. 2026 – 31. 10. 2026",
+        price: "Zahrnuto ve vstupném",
+        fullDesc: "Interaktivní expozice pro celou rodinu mapuje cestu hroznu od vinohradů přes lis, fermentaci a zrání až po hotovou lahev. Každá zastávka nabízí hands-on aktivitu — od třídění hroznů po nasazování korku. Ideální pro školy a rodinné návštěvy.",
+        includes: ["10 interaktivních stanovišť", "Pracovní listy pro děti zdarma", "Ochutnávka hroznové šťávy", "Skupinové kvízy s cenami"]
     }
 ];
 
