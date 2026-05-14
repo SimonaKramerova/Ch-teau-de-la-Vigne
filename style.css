@@ -624,43 +624,74 @@ h1, h2, h3, .logo {
 .info-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 4rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 5rem 2rem;
+    align-items: start;
 }
 
-.faq h3, .reviews h3 {
+.faq {
+    min-width: 0; /* prevents grid blowout */
+}
+
+.reviews {
+    min-width: 0;
+}
+
+.info-section .faq > h3,
+.info-section .reviews > h3 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: var(--primary);
     text-align: left;
+    font-family: 'Playfair Display', serif;
 }
 
 details {
     border-bottom: 1px solid #e0ddd8;
-    padding: 0.75rem 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 details summary {
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.9rem;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
+    font-size: 0.88rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
     align-items: center;
     user-select: none;
     color: var(--primary);
+    padding: 1rem 0;
+    line-height: 1.4;
+    /* Remove all native markers */
+    list-style: none;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
-details summary::-webkit-details-marker { display: none; }
+/* Remove native arrow in all browsers */
+details summary::-webkit-details-marker,
+details summary::marker {
+    display: none;
+    content: '';
+}
 
 details summary::after {
     content: '+';
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    font-weight: 300;
     color: var(--gold);
-    transition: transform 0.2s;
+    line-height: 1;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
 }
 
 details[open] summary::after {
@@ -668,10 +699,11 @@ details[open] summary::after {
 }
 
 details p {
-    padding: 0.75rem 0 0.25rem;
-    font-size: 0.88rem;
+    padding: 0 0 1rem 0;
+    font-size: 0.87rem;
     color: #555;
-    line-height: 1.7;
+    line-height: 1.75;
+    margin: 0;
 }
 
 .review-item {
