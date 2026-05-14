@@ -318,49 +318,57 @@ h1, h2, h3, .logo {
 
 .prehled-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
 }
 
 .expo-card {
-    background: white;
-    border-radius: 10px;
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .expo-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.13), inset 0 1px 0 rgba(255,255,255,0.9);
 }
 
 .expo-card-img {
     height: 200px;
-    background: var(--light-gray);
+    background: var(--light-gray) center/cover no-repeat;
 }
 
 .expo-card-content {
-    padding: 1.5rem;
+    padding: 1.3rem 1.4rem 1.5rem;
+    background: rgba(253,250,245,0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(197,160,89,0.18);
 }
 
 .expo-card-content h3 {
-    margin-bottom: 0.4rem;
-    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+    font-size: 1.05rem;
     color: var(--primary);
 }
 
 .expo-card-content p {
-    font-size: 0.9rem;
+    font-size: 0.87rem;
     color: #666;
-    margin-bottom: 1rem;
+    margin-bottom: 0.9rem;
+    line-height: 1.55;
 }
 
 .expo-card-link {
     color: var(--gold);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     transition: color 0.2s;
 }
 
@@ -1004,6 +1012,13 @@ details p {
 
 .expo-modal-btn:hover {
     background: rgba(74, 93, 78, 1);
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .prehled-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* ===== RESPONZIVITA ===== */
