@@ -20,9 +20,9 @@ const timer = setInterval(() => {
 // ===== CSV PARSER =====
 // Parses the expozice.csv content (tab-separated)
 const csvText = `Název\tPopis\tKategorie\tObrázek
-Antické amfory\tUnikátní sbírka nádob na víno z dob Římské říše.\tHistorie\timg/amfory.jpg
-Mechanický lis 1890\tPlně funkční stroj z konce 19. století.\tTechnika\timg/lis.jpg
-Víno a Umění\tJak víno inspirovalo malíře baroka.\tKultura\timg/art.jpg`;
+Antické amfory\tUnikátní sbírka nádob na víno z dob Římské říše.\tHistorie\timages/Antické amfory.jpg
+Mechanický lis 1890\tPlně funkční stroj z konce 19. století.\tTechnika\timages/Mechanický lis 1890.jpg
+Víno a Umění\tJak víno inspirovalo malíře baroka.\tKultura\timages/redwine.jpg`;
 
 function parseCSV(text) {
     const lines = text.trim().split('\n');
@@ -58,8 +58,8 @@ function loadPrehledExhibitions() {
 
 // Current exhibitions (hardcoded subset, could be extended)
 const currentExhibitions = [
-    { title: "Zlatý výběr 2026",   description: "Nejlepší vína letošní sklizně.",      image: "img/amfory.jpg" },
-    { title: "Historie vinařství",  description: "Od středověku do moderny.",            image: "img/lis.jpg" }
+    { title: "Zlatý výběr 2026",   description: "Nejlepší vína letošní sklizně.",      image: "images/sber.jpg" },
+    { title: "Historie vinařství",  description: "Od středověku do moderny.",            image: "images/crushinginoldtimes.jpg" }
 ];
 
 function loadCurrentExhibitions() {
@@ -112,10 +112,10 @@ function initCarousel() {
 
 // ===== VSTUPENKY =====
 const ticketData = {
-    zahrady:  { title: "PROHLÍDKA ZAHRAD",   name: "GARDEN TOUR 2026",    price: "250 Kč", image: "img/ticket-gardens.jpg", bgColor: "#5a7a5e" },
-    sklepy:   { title: "SKLEPY & DŮM",        name: "CHÂTEAU CLASSIC",     price: "350 Kč", image: "img/ticket-cellar.jpg",  bgColor: "#6b4f30" },
-    degustace:{ title: "DEGUSTACE & TVORBA",  name: "WINE MASTER 2026",    price: "590 Kč", image: "img/ticket-wine.jpg",    bgColor: "#8a6b2a" },
-    bonus:    { title: "VŠE + BONUS PROGRAM", name: "PREMIUM EXPERIENCE",  price: "890 Kč", image: "img/ticket-premium.jpg", bgColor: "#3a4a3e" }
+    zahrady:  { title: "PROHLÍDKA ZAHRAD",   name: "GARDEN TOUR 2026",    price: "250 Kč", image: "images/vilarnau.jpg",           bgColor: "#5a7a5e" },
+    sklepy:   { title: "SKLEPY & DŮM",        name: "CHÂTEAU CLASSIC",     price: "350 Kč", image: "images/uvnitr.jpg",             bgColor: "#6b4f30" },
+    degustace:{ title: "DEGUSTACE & TVORBA",  name: "WINE MASTER 2026",    price: "590 Kč", image: "images/makingwine.jpg",         bgColor: "#8a6b2a" },
+    bonus:    { title: "VŠE + BONUS PROGRAM", name: "PREMIUM EXPERIENCE",  price: "890 Kč", image: "images/crushinginoldtimes.jpg", bgColor: "#3a4a3e" }
 };
 
 function updateTicket() {
