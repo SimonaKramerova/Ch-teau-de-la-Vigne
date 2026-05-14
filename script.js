@@ -5,7 +5,6 @@ const timer = setInterval(() => {
     const now = new Date().getTime();
     const distance = countdownDate - now;
 
-    // Přidat vedoucí nuly (05 místo 5)
     const pad = (num) => String(num).padStart(2, '0');
 
     document.getElementById("days").innerText = pad(Math.floor(distance / (1000 * 60 * 60 * 24)));
@@ -15,52 +14,85 @@ const timer = setInterval(() => {
 
     if (distance < 0) {
         clearInterval(timer);
-        document.getElementById("countdown").innerHTML = "<h2>VÝSTAVA ZAHÁJENA!</h2>";
+        document.querySelector('.nova-vystava').innerHTML = "<h2>VÝSTAVA ZAHÁJENA!</h2>";
     }
 }, 1000);
 
-// Carousel
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
+// ===== VÝSTAVY DATA =====
+const prehledExhibitions = [
+    {
+        title: "Antické amfory",
+        description: "Unikátní sbírka nádob z antiky",
+        image: "images/Antické amfory.jpg"
+    },
+    {
+        title: "Mechanický lis 1890",
+        description: "Historický stroj na lisování vína",
+        image: "images/Mechanický lis 1890.jpg"
+    },
+    {
+        title: "Víno a Umění",
+        description: "Jak víno inspirovalo umělce",
+        image: "images/redwine.jpg"
+    }
+];
 
-function showSlide(n) {
-    slides.forEach(s => s.classList.remove('active'));
-    currentSlide = (n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
+const currentExhibitions = [
+    {
+        title: "Zlatý výběr 2026",
+        description: "Nejlepší vína letošní sklizně",
+        image: "images/Antické amfory.jpg"
+    },
+    {
+        title: "Historie vinařství",
+        description: "Od středověku do moderny",
+        image: "images/Mechanický lis 1890.jpg"
+    }
+];
+
+// Funkcionalita - Přehled expozic
+function loadPrehledExhibitions() {
+    const container = document.getElementById('prehled-grid');
+    prehledExhibitions.forEach(expo => {
+        const card = document.createElement('div');
+        card.className = 'expo-card';
+        card.innerHTML = `
+            <div class="expo-card-img" style="background-image: url('${expo.image}'); background-size: cover; background-position: center;">
+            </div>
+            <div class="expo-card-content">
+                <h3>${expo.title}</h3>
+                <p>${expo.description}</p>
+                <a href="#" class="expo-card-link">Více →</a>
+            </div>
+        `;
+        container.appendChild(card);
+    });
 }
 
-document.querySelector('.next').addEventListener('click', () => showSlide(currentSlide + 1));
-document.querySelector('.prev').addEventListener('click', () => showSlide(currentSlide - 1));
-
-// Automatický posun carouselu
-setInterval(() => {
-    showSlide(currentSlide + 1);
-}, 5000);
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+// Funkcionalita - Aktuální expozice
+function loadCurrentExhibitions() {
+    const container = document.getElementById('current-grid');
+    currentExhibitions.forEach(expo => {
+        const card = document.createElement('div');
+        card.className = 'current-expo';
+        card.innerHTML = `
+            <div class="current-expo-img" style="background-image: url('${expo.image}'); background-size: cover; background-position: center;"></div>
+            <div class="current-expo-content">
+                <h3>${expo.title}</h3>
+                <p>${expo.description}</p>
+            </div>
+        `;
+        container.appendChild(card);
     });
+}
+
+// Načítání dat při načtení stránky
+document.addEventListener('DOMContentLoaded', () => {
+    loadPrehledExhibitions();
+    loadCurrentExhibitions();
 });
 
-// Burger menu
-const burger = document.getElementById('burger');
-const navLinks = document.querySelector('.nav-links');
-const closeBtn = document.querySelector('.close-menu');
-
-burger.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-});
-closeBtn.addEventListener('click', () => {
-    navLinks.classList.remove('show');
-});
-
-// =======================
-// VSTUPENKY - INTERAKTIVNÍ SYSTÉM
-// =======================
-
+// ===== VSTUPENKY - INTERAKTIVNÍ SYSTÉM =====
 const ticketData = {
     zahrady: {
         title: "PROHLÍDKA ZAHRAD",
@@ -92,74 +124,45 @@ const ticketData = {
     }
 };
 
-// Funkce na aktualizaci vstupenky
 function updateTicket() {
     const selectedType = document.getElementById('ticket-type').value;
     const data = ticketData[selectedType];
     
-    // Aktualizovat obrázek
     const ticketImg = document.getElementById('ticket-img');
     ticketImg.style.backgroundImage = `url('${data.image}')`;
+    ticketImg.style.backgroundSize = 'cover';
+    ticketImg.style.backgroundPosition = 'center';
     
-    // Aktualizovat text
     document.getElementById('ticket-title').textContent = data.title;
     document.getElementById('ticket-name').textContent = data.name;
     document.getElementById('ticket-price').textContent = data.price;
     
-    // Aktualizovat barvu pozadí karty
     const ticketCard = document.querySelector('.ticket-card');
     ticketCard.style.backgroundColor = data.bgColor;
 }
 
-// Nasloucha změně v selectu
 const ticketTypeSelect = document.getElementById('ticket-type');
 if (ticketTypeSelect) {
     ticketTypeSelect.addEventListener('change', updateTicket);
-    // Inicializace při načtení stránky
     updateTicket();
 }
-
-// Načítání dat do galerie
-const expoziceData = [
-  ["Antické amfory", "Unikátní sbírka nádob na víno z dob Římské říše.", "Historie", "images/Antické amfory.jpg"],
-  ["Mechanický lis 1890", "Plně funkční stroj z konce 19. století.", "Technika", "images/Mechanický lis 1890.jpg"],
-  ["Víno a Umění", "Jak víno inspirovalo malíře baroka.", "Kultura", "images/redwine.jpg"],
-];
-
-function zobrazExpozice() {
-  const container = document.getElementById('exhibition-grid');
-  if (!container) return; // Bezpečnost - pokud element neexistuje
-  
-  expoziceData.forEach(item => {
-    const [nazev, popis, kategorie, obrazek] = item;
-    const div = document.createElement('div');
-    div.className = 'ex-card';
-
-    div.innerHTML = `
-      <img src="${obrazek}" alt="${nazev}">
-      <h3>${nazev}</h3>
-      <p class="category">${kategorie}</p>
-      <p>${popis}</p>
-    `;
-    container.appendChild(div);
-  });
-}
-
-// Zavolat při načtení stránky
-document.addEventListener('DOMContentLoaded', zobrazExpozice);
 
 // Zpracování formuláře
 const bookingForm = document.getElementById('booking-form');
 if (bookingForm) {
     bookingForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const formData = new FormData(this);
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
-        alert('Vstupenky byly odeslány! Děkujeme.');
-        // Vymazat formulář
+        alert('Vstupenky byly odeslány! Děkujeme za rezervaci.');
         this.reset();
+        updateTicket();
+    });
+}
+
+// Burger menu
+const burger = document.querySelector('.burger');
+const navLinks = document.querySelector('.nav-links');
+if (burger) {
+    burger.addEventListener('click', () => {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
     });
 }
