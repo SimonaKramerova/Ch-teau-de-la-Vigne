@@ -151,7 +151,9 @@ h1, h2, h3, .logo {
 
 /* ===== HERO ===== */
 .hero {
-    background: linear-gradient(160deg, #3a4a3a 0%, #4a5d4e 50%, #6b7c4f 100%);
+    background-color: #3a4a3a;
+    background-size: cover;
+    background-position: center;
     padding: 6rem 2rem;
     text-align: center;
     min-height: 480px;
@@ -166,8 +168,8 @@ h1, h2, h3, .logo {
     content: '';
     position: absolute;
     inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c5a059' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    pointer-events: none;
+    background: linear-gradient(160deg, rgba(20,30,20,0.65) 0%, rgba(40,55,40,0.55) 100%);
+    z-index: 0;
 }
 
 .hero-content {
