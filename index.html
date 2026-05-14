@@ -25,37 +25,42 @@
     </div>
 </nav>
 
-<!-- Hero Banner -->
+<!-- Hero Banner + Countdown -->
 <section id="home" class="hero" style="background-image: url('images/vinárna.jpg');">
     <div class="hero-content">
         <h1>Château de la Vigne</h1>
         <p>Příběh vína od antiky po moderní lisy.</p>
         <a href="#rezervace" class="cta-btn glass-btn">Rezervovat prohlídku</a>
+
+        <div class="countdown-glass">
+            <p class="countdown-title">Nová výstava "Zlatý výběr 2026" začíná za:</p>
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="days">00</span>
+                    <span class="countdown-label">Dny</span>
+                </div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="hours">00</span>
+                    <span class="countdown-label">Hodin</span>
+                </div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="minutes">00</span>
+                    <span class="countdown-label">Minut</span>
+                </div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="seconds">00</span>
+                    <span class="countdown-label">Sekund</span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Countdown Section -->
-<section class="nova-vystava">
-    <h2>Nová výstava: "Zlatý výběr 2026" začíná za:</h2>
-    <div class="countdown-container">
-        <div class="countdown-item">
-            <span class="countdown-label">Dny</span>
-            <span class="countdown-value" id="days">00</span>
-        </div>
-        <div class="countdown-item">
-            <span class="countdown-label">Hodin</span>
-            <span class="countdown-value" id="hours">00</span>
-        </div>
-        <div class="countdown-item">
-            <span class="countdown-label">Minut</span>
-            <span class="countdown-value" id="minutes">00</span>
-        </div>
-        <div class="countdown-item">
-            <span class="countdown-label">Sekund</span>
-            <span class="countdown-value" id="seconds">00</span>
-        </div>
-    </div>
-</section>
+<!-- Separator -->
+<hr class="section-divider" />
 
 <!-- Přehled Expozic -->
 <section id="expozice" class="prehled-expozic">
@@ -208,6 +213,34 @@
     </div>
     <p class="copy">&copy; 2026 Château de la Vigne. Všechna práva vyhrazena.</p>
 </footer>
+
+<!-- Modal pro expozice -->
+<div class="expo-modal-overlay" id="expo-modal-overlay">
+    <div class="expo-modal">
+        <button class="expo-modal-close" id="expo-modal-close">&times;</button>
+        <div class="expo-modal-img" id="expo-modal-img"></div>
+        <div class="expo-modal-body">
+            <span class="expo-modal-category" id="expo-modal-category"></span>
+            <h2 id="expo-modal-title"></h2>
+            <div class="expo-modal-meta">
+                <div class="expo-meta-item">
+                    <span class="meta-label">Od – Do</span>
+                    <span class="meta-value" id="expo-modal-dates"></span>
+                </div>
+                <div class="expo-meta-item">
+                    <span class="meta-label">Vstupné</span>
+                    <span class="meta-value" id="expo-modal-price"></span>
+                </div>
+            </div>
+            <p id="expo-modal-desc"></p>
+            <div class="expo-modal-includes">
+                <h4>Co je součástí</h4>
+                <ul id="expo-modal-includes"></ul>
+            </div>
+            <a href="#rezervace" class="glass-btn expo-modal-btn" id="expo-modal-reserve">Rezervovat vstupenku</a>
+        </div>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>
