@@ -4,26 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Château de la Vigne | Muzeum vína</title>
-<!-- CSS -->
 <link rel="stylesheet" href="style.css">
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
 <!-- Sticky Navigace -->
-<nav id="navbar">
-    <div class="logo">Château <span>de la Vigne</span></div>
-    <ul class="nav-links">
-        <li><a href="#home">Domů</a></li>
-        <li><a href="#expozice">Expozice</a></li>
-        <li><a href="#premium">Prémiové</a></li>
-        <li><a href="#rezervace">Vstupenky</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-        <li class="close-menu">&times;</li>
-    </ul>
-    <div class="burger" id="burger">&#9776;</div>
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="logo">Château <span>de la Vigne</span></div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Domů</a></li>
+            <li><a href="#expozice">Expozice</a></li>
+            <li><a href="#premium">Prémiové</a></li>
+            <li><a href="#rezervace">Vstupenky</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+        <div class="burger" id="burger">&#9776;</div>
+    </div>
 </nav>
 
 <!-- Hero Banner -->
@@ -31,70 +30,91 @@
     <div class="hero-content">
         <h1>Château de la Vigne</h1>
         <p>Příběh vína od antiky po moderní lisy.</p>
-        <a href="#rezervace" class="btn">Rezervovat prohlídku</a>
+        <a href="#rezervace" class="cta-btn glass-btn">Rezervovat prohlídku</a>
     </div>
 </section>
 
 <!-- Countdown Section -->
-<section class="countdown-section">
+<section class="nova-vystava">
     <h2>Nová výstava: "Zlatý výběr 2026" začíná za:</h2>
-    <div id="countdown">
-        <div class="time-part"><span id="days">00</span><p>Dny</p></div>
-        <div class="time-part"><span id="hours">00</span><p>Hodin</p></div>
-        <div class="time-part"><span id="minutes">00</span><p>Minut</p></div>
-        <div class="time-part"><span id="seconds">00</span><p>Sekund</p></div>
+    <div class="countdown-container">
+        <div class="countdown-item">
+            <span class="countdown-label">Dny</span>
+            <span class="countdown-value" id="days">00</span>
+        </div>
+        <div class="countdown-item">
+            <span class="countdown-label">Hodin</span>
+            <span class="countdown-value" id="hours">00</span>
+        </div>
+        <div class="countdown-item">
+            <span class="countdown-label">Minut</span>
+            <span class="countdown-value" id="minutes">00</span>
+        </div>
+        <div class="countdown-item">
+            <span class="countdown-label">Sekund</span>
+            <span class="countdown-value" id="seconds">00</span>
+        </div>
     </div>
 </section>
 
-<!-- Expozice - načtení z JS -->
-<section id="expozice" class="exhibitions">
+<!-- Přehled Expozic -->
+<section id="expozice" class="prehled-expozic">
     <h2>Naše Expozice</h2>
-    <div class="exhibition-grid" id="exhibition-grid"></div>
+    <div class="prehled-grid" id="prehled-grid"></div>
+</section>
+
+<!-- Aktuální Expozice -->
+<section class="aktualni-expozice">
+    <h2>Aktuální výstavy</h2>
+    <div class="current-grid" id="current-grid"></div>
 </section>
 
 <!-- Carousel - Prémiové výstavy -->
-<section id="premium" class="premium-carousel">
+<section id="premium" class="premiumne-vystavy">
     <h2>Prémiové zážitky</h2>
-    <div class="carousel-container">
-        <div class="carousel-slide active">
-            <img src="img/premium1.jpg" alt="Degustace" />
-            <div class="carousel-caption">
-                <h3>Archivní sklepy králů</h3>
-                <p>Exkluzivní prohlídka prostor, kam běžný návštěvník nesmí.</p>
+    <div class="carousel">
+        <div class="carousel-slide-container">
+            <div class="carousel-slide active">
+                <img src="img/premium1.jpg" alt="Archivní sklepy" />
+                <div class="carousel-caption">
+                    <h3>Archivní sklepy králů</h3>
+                    <p>Exkluzivní prohlídka prostor, kam běžný návštěvník nesmí.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="img/premium2.jpg" alt="Degustace" />
+                <div class="carousel-caption">
+                    <h3>Degustace vín</h3>
+                    <p>Odborné degustace s vinaři v krásném prostředí.</p>
+                </div>
             </div>
         </div>
-        <div class="carousel-slide">
-            <img src="img/premium2.jpg" alt="Degustace" />
-            <div class="carousel-caption">
-                <h3>Degustace vín</h3>
-                <p>Odborné degustace s vinaři v krásném prostředí.</p>
-            </div>
-        </div>
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
+        <button class="carousel-btn prev" id="carousel-prev">&#10094;</button>
+        <button class="carousel-btn next" id="carousel-next">&#10095;</button>
     </div>
+    <div class="carousel-dots" id="carousel-dots"></div>
 </section>
 
 <!-- Rezervace/Vstupenky -->
-<section id="rezervace" class="booking">
+<section id="rezervace" class="rezervace">
     <h2>Objednat vstupenky</h2>
-    <div class="booking-wrapper">
-        <!-- Náhled vstupenky se DYNAMICKY MĚNÍCÍM OBRÁZKEM -->
+    <div class="rezervace-wrapper">
+        <!-- Náhled vstupenky -->
         <div class="ticket-preview">
             <div class="ticket-card">
                 <div class="ticket-img" id="ticket-img"></div>
                 <div class="ticket-info">
                     <span id="ticket-date">05 / 10 / 2026</span>
-                    <h4 id="ticket-name">ADOLPH FRIEDRICH</h4>
-                    <h3 id="ticket-title">VINNÁ REVOLUCE</h3>
+                    <h4 id="ticket-name">GARDEN TOUR 2026</h4>
+                    <h3 id="ticket-title">PROHLÍDKA ZAHRAD</h3>
                     <div class="ticket-price" id="ticket-price">250 Kč</div>
                     <div class="barcode">|||| | || ||| | ||</div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Formulář -->
-        <div class="booking-form">
+        <div class="rezervace-form">
             <form id="booking-form">
                 <input type="text" name="name" placeholder="Jméno a příjmení" required />
                 <input type="email" name="email" placeholder="E-mail" required />
@@ -108,7 +128,7 @@
                     </select>
                 </div>
                 <input type="number" name="count" min="1" placeholder="Počet osob" required />
-                <button type="submit" class="btn-submit">Rezervovat</button>
+                <button type="submit" class="btn-reserve glass-btn">Rezervovat</button>
             </form>
         </div>
     </div>
@@ -148,7 +168,7 @@
         </details>
         <details>
             <summary>Jak se dostaneme do muzea?</summary>
-            <p>Muzeum se nachází v Valtici. Lze se sem dostat autem (volné parkoviště), vlakem (zastávka Valtice) nebo autobusem. Nejbližší letiště je Brno (50 km).</p>
+            <p>Muzeum se nachází ve Valtici. Lze se sem dostat autem (volné parkoviště), vlakem (zastávka Valtice) nebo autobusem. Nejbližší letiště je Brno (50 km).</p>
         </details>
     </div>
     <div class="reviews">
@@ -173,23 +193,22 @@
 </section>
 
 <!-- Kontakt a mapa -->
-<footer id="kontakt">
-    <div class="footer-content">
-        <div class="contact-info">
+<footer id="kontakt" class="kontakt">
+    <div class="kontakt-wrapper">
+        <div class="kontakt-info">
             <h3>Kontakt</h3>
             <p>Vinařská 12, 691 42 Valtice</p>
             <p>Email: info@chateaudelavigne.cz</p>
             <p>Tel: +420 123 456 789</p>
             <p>Web: www.chateaudelavigne.cz</p>
         </div>
-        <div class="map">
+        <div class="kontakt-mapa">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2549.5632345857996!2d16.99897!3d48.70563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470c394c0e0f0001%3A0x1234567890abcdef!2sVin%C3%A1rsk%C3%A1%2012%2C%20691%2042%20Valtice!5e0!3m2!1scs!2scz!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
     <p class="copy">&copy; 2026 Château de la Vigne. Všechna práva vyhrazena.</p>
 </footer>
 
-<!-- JavaScript -->
 <script src="script.js"></script>
 </body>
 </html>
