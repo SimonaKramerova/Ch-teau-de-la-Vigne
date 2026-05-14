@@ -114,7 +114,7 @@ function initCarousel() {
 const ticketData = {
     zahrady:  { title: "PROHLÍDKA ZAHRAD",   name: "GARDEN TOUR 2026",    price: "250 Kč", image: "images/vilarnau.jpg",           bgColor: "#5a7a5e" },
     sklepy:   { title: "SKLEPY & DŮM",        name: "CHÂTEAU CLASSIC",     price: "350 Kč", image: "images/uvnitr.jpg",             bgColor: "#6b4f30" },
-    degustace:{ title: "DEGUSTACE & TVORBA",  name: "WINE MASTER 2026",    price: "590 Kč", image: "images/makingwine.jpg",         bgColor: "#8a6b2a" },
+    degustace:{ title: "DEGUSTACE & TVORBA",  name: "WINE MASTER 2026",    price: "590 Kč", image: "Degustace vín_ Hrad Vildštejn.jpg",         bgColor: "#8a6b2a" },
     bonus:    { title: "VŠE + BONUS PROGRAM", name: "PREMIUM EXPERIENCE",  price: "890 Kč", image: "images/crushinginoldtimes.jpg", bgColor: "#3a4a3e" }
 };
 
