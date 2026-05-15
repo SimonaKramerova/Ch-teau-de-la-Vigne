@@ -182,7 +182,7 @@ const carouselData = [
     },
     {
         title: "Degustace vín",
-        desc: "Usaďte se v salonku s výhledem do vinohradu a nechte se provést výběrem až osmi vín od našeho someliéra. Každý vzorek je doprovázen příběhem vinaře, popisem terroir a doporučením, k jakému jídlu se nejlépe hodí. Degustace probíhají v malých skupinách, takže máte prostor na otázky a skutečný rozhovor o víně."
+        desc: "Usaďte se v salonku s výhledem do vinohradu a nechte se provést výběrem až osmi vín od našeho someliéra.  Degustace probíhají v malých skupinách, takže máte prostor na otázky a skutečný rozhovor o víně."
     }
 ];
 
