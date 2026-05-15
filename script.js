@@ -65,7 +65,7 @@ const exhibitionsData = [
     },
     {
         title: "Sklepy a jejich tajemství",
-        description: "Podzemní svět, kde zraje víno po staletí.",
+        description: "Podzemní svět, kde zraje víno po staletis.",
         category: "Architektura",
         image: "images/uvnitr.jpg",
         dates: "Stálá expozice",
@@ -103,7 +103,6 @@ function loadPrehledExhibitions() {
         container.appendChild(card);
     });
 
-    // Spuštění modálu při kliknutí na odkaz "Více →"
     container.querySelectorAll('.expo-card-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -175,58 +174,48 @@ function initCarousel() {
     setInterval(() => goTo(current + 1), 5000);
 }
 
-// ===== VSTUPENKY =====
-const ticketData = {
-    zahrady:  { title: "PROHLÍDKA ZAHRAD",   name: "GARDEN TOUR 2026",    price: "250 Kč", image: "images/vilarnau.jpg",           bgColor: "#5a7a5e" },
-    sklepy:   { title: "SKLEPY & DŮM",        name: "CHÂTEAU CLASSIC",     price: "350 Kč", image: "images/uvnitr.jpg",              bgColor: "#6b4f30" },
-    degustace:{ title: "DEGUSTACE & TVORBA",  name: "WINE MASTER 2026",    price: "590 Kč", image: "images/makingwine.jpg",         bgColor: "#8a6b2a" },
-    bonus:    { title: "VŠE + BONUS PROGRAM", name: "PREMIUM EXPERIENCE",  price: "890 Kč", image: "images/crushinginoldtimes.jpg", bgColor: "#3a4a3e" }
-};
-
-function updateTicket() {
-    const sel = document.getElementById('ticket-type');
-    if (!sel) return;
-    const data = ticketData[sel.value];
-    const ticketImg = document.getElementById('ticket-img');
-    if (ticketImg) {
-        ticketImg.style.backgroundImage = `url('${data.image}')`;
-        ticketImg.style.backgroundSize = 'cover';
-        ticketImg.style.backgroundPosition = 'center';
-    }
-    const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-    setTxt('ticket-title', data.title);
-    setTxt('ticket-name', data.name);
-    setTxt('ticket-price', data.price);
-
-    const card = document.querySelector('.ticket-card');
-    if (card) card.style.backgroundColor = data.bgColor;
-}
-
-// ===== EXPO MODAL (OTEVŘENÍ / ZAVŘENÍ) =====
+// ===== EXPO MODAL (OPRAVENO PRO TVOJE HTML) =====
 function openExpoModal(index) {
     const expo = exhibitionsData[index];
     const overlay = document.getElementById('expo-modal-overlay');
+    if (!overlay || !expo) return;
 
-    document.getElementById('expo-modal-img').style.backgroundImage = `url('${expo.image}')`;
-    document.getElementById('expo-modal-category').textContent = expo.category;
-    document.getElementById('expo-modal-title').textContent = expo.title;
-    document.getElementById('expo-modal-dates').textContent = expo.dates;
-    document.getElementById('expo-modal-price').textContent = expo.price;
-    document.getElementById('expo-modal-desc').textContent = expo.fullDesc;
+    // Bezpečné naplnění textů a obrázku podle přesných ID z tvého HTML
+    const modalImg = document.getElementById('expo-modal-img');
+    if (modalImg) modalImg.style.backgroundImage = `url('${expo.image}')`;
 
-    // Najde podtřídu ul uvnitř struktury modálu pro vypsání obsahu balíčku
-    const ul = document.querySelector('.expo-modal-includes ul');
+    const categoryEl = document.getElementById('expo-modal-category');
+    if (categoryEl) categoryEl.textContent = expo.category;
+
+    const titleEl = document.getElementById('expo-modal-title');
+    if (titleEl) titleEl.textContent = expo.title;
+
+    const datesEl = document.getElementById('expo-modal-dates');
+    if (datesEl) datesEl.textContent = expo.dates;
+
+    const priceEl = document.getElementById('expo-modal-price');
+    if (priceEl) priceEl.textContent = expo.price;
+
+    const descEl = document.getElementById('expo-modal-desc');
+    if (descEl) descEl.textContent = expo.fullDesc;
+
+    // Cílení přímo na ID seznamu "Co je součástí" z tvého HTML (id="expo-modal-includes")
+    const ul = document.getElementById('expo-modal-includes');
     if (ul) {
         ul.innerHTML = expo.includes.map(item => `<li>${item}</li>`).join('');
     }
 
+    // Zobrazení a zamknutí scrolování na pozadí
     overlay.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Zamezí rolování webu na pozadí
+    document.body.style.overflow = 'hidden';
 }
 
 function closeExpoModal() {
-    document.getElementById('expo-modal-overlay').classList.remove('active');
-    document.body.style.overflow = '';
+    const overlay = document.getElementById('expo-modal-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+    }
+    document.body.style.overflow = ''; // Obnovení scrolování stránky
 }
 
 function initModal() {
@@ -261,13 +250,6 @@ function initDatePicker() {
     if (!dateInput) return;
     const today = new Date().toISOString().split('T')[0];
     dateInput.min = today;
-
-    dateInput.addEventListener('change', () => {
-        const parts = dateInput.value.split('-');
-        if (parts.length === 3) {
-            document.getElementById('ticket-date').textContent = `${parts[2]} / ${parts[1]} / ${parts[0]}`;
-        }
-    });
 }
 
 // ===== FORM SUBMIT =====
