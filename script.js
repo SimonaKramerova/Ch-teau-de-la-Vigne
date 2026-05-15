@@ -91,36 +91,12 @@ const exhibitionsData = [
     }
 ];
 
-// Data expozic (příklady, doplň podle potřeby)
-const exhibitionsData = [
-    {
-        title: "Antické amfory",
-        description: "Unikátní sbírka nádob na víno z dob Římské říše.",
-        category: "Historie",
-        image: "images/Antické amfory.jpg",
-        dates: "1. 3. 2026 – 31. 8. 2026",
-        price: "Zahrnuto ve vstupném",
-        fullDesc: "Prozkoumejte fascinující sbírku amfor a nádob z dob antického Říma a Řecka. Exponáty pocházejí z vykopávek ve středomoří a dokumentují, jak víno hrálo klíčovou roli v každodenním životě starověkých civilizací — od náboženských rituálů po obchod.",
-        includes: ["Komentovaná prohlídka s průvodcem", "Interaktivní mapa obchodních cest", "Repliky nádob k prohlédnutí", "Vzdělávací panel pro děti"]
-    },
-    {
-        title: "Sklepy a jejich tajemství",
-        description: "Podzemní svět, kde zraje víno po staletí.",
-        category: "Architektura",
-        image: "images/uvnitr.jpg",
-        dates: "Stálá expozice",
-        price: "Zahrnuto ve vstupném od 350 Kč",
-        fullDesc: "Historické sklepy châteaux skrývají stovky let starou architekturu a desítky tisíc lahví zrajícího vína. Tato expozice vás provede podzemními chodbami, odhalí tajemství správné teploty a vlhkosti a přiblíží umění šambrování i etiketování prémiových vín.",
-        includes: ["Průchod historickými sklepními chodbami", "Ukázka šambrování vína", "Přístup k archivním ročníkům (bez degustace)", "Fotografování povoleno"]
-    },
-    // Přidej další podle potřeby
-];
-
-// Funkce pro načtení expozic do gridu
+// ===== VÝSTAVY S MODALY =====
 function loadPrehledExhibitions() {
     const container = document.getElementById('prehled-grid');
     if (!container) return;
-    container.innerHTML = "";
+    container.innerHTML = ""; // Vyčištění pro jistotu
+    
     exhibitionsData.forEach((expo, index) => {
         const card = document.createElement('div');
         card.className = 'expo-card';
@@ -134,70 +110,13 @@ function loadPrehledExhibitions() {
         `;
         container.appendChild(card);
     });
-}
 
-// Event delegation pro odkazy "Více"
-document.getElementById('prehled-grid').addEventListener('click', (e) => {
-    if (e.target && e.target.matches('.expo-card-link')) {
-        e.preventDefault();
-        const index = parseInt(e.target.dataset.index);
-        openExpoModal(index);
-    }
-});
-
-// Funkce pro otevření modálního okna
-function openExpoModal(index) {
-    const expo = exhibitionsData[index];
-    const overlay = document.getElementById('expo-modal-overlay');
-    if (!overlay || !expo) return;
-
-    const modalImg = document.getElementById('expo-modal-img');
-    if (modalImg) modalImg.style.backgroundImage = `url('${expo.image}')`;
-
-    document.getElementById('expo-modal-category').textContent = expo.category;
-    document.getElementById('expo-modal-title').textContent = expo.title;
-    document.getElementById('expo-modal-dates').textContent = expo.dates;
-    document.getElementById('expo-modal-price').textContent = expo.price;
-    document.getElementById('expo-modal-desc').textContent = expo.fullDesc;
-
-    const ul = document.querySelector('.expo-modal-includes ul');
-    if (ul) {
-        ul.innerHTML = expo.includes.map(item => `<li>${item}</li>`).join('');
-    }
-
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-// Funkce pro zavření
-function closeExpoModal() {
-    const overlay = document.getElementById('expo-modal-overlay');
-    if (overlay) overlay.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Inicializace
-function initModal() {
-    document.getElementById('expo-modal-close')?.addEventListener('click', closeExpoModal);
-    document.getElementById('expo-modal-overlay')?.addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) closeExpoModal();
+    container.querySelectorAll('.expo-card-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            openExpoModal(parseInt(link.dataset.index));
+        });
     });
-    document.getElementById('expo-modal-reserve')?.addEventListener('click', closeExpoModal);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadPrehledExhibitions();
-    initModal();
-});
-
-// Event delegation pro kliknutí na odkazy "Více" v gridu expozic
-document.getElementById('prehled-grid').addEventListener('click', (e) => {
-    if (e.target && e.target.matches('.expo-card-link')) {
-        e.preventDefault(); // zabrání výchozímu chování odkazu
-        const index = parseInt(e.target.dataset.index);
-        openExpoModal(index);
-    }
-});
 }
 
 const currentExhibitions = [
@@ -273,7 +192,7 @@ function initCarousel() {
 }
 
 // ===== EXPO MODAL (ZCELA NEPRŮSTŘELNÁ VERZE) =====
-function (index) {
+function openExpoModal(index) {
     try {
         const expo = exhibitionsData[index];
         const overlay = document.getElementById('expo-modal-overlay');
