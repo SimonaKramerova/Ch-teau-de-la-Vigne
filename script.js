@@ -92,6 +92,7 @@ const exhibitionsData = [
 ];
 
 // ===== VÝSTAVY S MODALY =====
+// Funkce pro načtení expozic
 function loadPrehledExhibitions() {
     const container = document.getElementById('prehled-grid');
     if (!container) return;
@@ -110,13 +111,16 @@ function loadPrehledExhibitions() {
         `;
         container.appendChild(card);
     });
+}
 
-    container.querySelectorAll('.expo-card-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            openExpoModal(parseInt(link.dataset.index));
-        });
-    });
+// Přidání event delegation na kontejner
+document.getElementById('prehled-grid').addEventListener('click', (e) => {
+    if (e.target && e.target.matches('.expo-card-link')) {
+        e.preventDefault();
+        const index = parseInt(e.target.dataset.index);
+        openExpoModal(index);
+    }
+});
 }
 
 const currentExhibitions = [
