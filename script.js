@@ -176,8 +176,14 @@ function loadCurrentExhibitions() {
 
 // ===== CAROUSEL (SLIDER) =====
 const carouselData = [
-    { title: "Archivní sklepy králů", desc: "Exkluzivní prohlídka prostor, kam běžný návštěvník nesmí." },
-    { title: "Degustace vín",         desc: "Odborné degustace s vinaři v krásném prostředí." }
+    {
+        title: "Archivní sklepy králů",
+        desc: "Sestupte do hlubin našich historických sklepů, kde teplota nikdy nepřekročí 12 °C a vzduch voní po staletích zrání. Uvidíte archivní ročníky sahající až do roku 1923, poznáte tajemství správného šambrování a průvodce vám odhalí, proč právě tyto prostory patří k nejcennějším vinařským památkám střední Evropy."
+    },
+    {
+        title: "Degustace vín",
+        desc: "Usaďte se v salonku s výhledem do vinohradu a nechte se provést výběrem až osmi vín od našeho someliéra. Každý vzorek je doprovázen příběhem vinaře, popisem terroir a doporučením, k jakému jídlu se nejlépe hodí. Degustace probíhají v malých skupinách, takže máte prostor na otázky a skutečný rozhovor o víně."
+    }
 ];
 
 function initCarousel() {
