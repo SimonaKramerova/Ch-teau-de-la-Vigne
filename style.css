@@ -341,19 +341,19 @@ h1, h2, h3, .logo {
     aspect-ratio: 3 / 4;
 }
 
-:hover {
+.expo-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 14px 36px rgba(0,0,0,0.13), inset 0 1px 0 rgba(255,255,255,0.9);
 }
 
--img {
+.expo-card-img {
     width: 100%;
     flex: 1;
     background: var(--light-gray) center/cover no-repeat;
     min-height: 0;
 }
 
--content {
+.expo-card-content {
     padding: 1rem 1.2rem 1.1rem;
     background: rgba(253,250,245,0.72);
     backdrop-filter: blur(16px);
@@ -362,13 +362,13 @@ h1, h2, h3, .logo {
     flex-shrink: 0;
 }
 
--content h3 {
+.expo-card-content h3 {
     margin-bottom: 0.25rem;
     font-size: 0.95rem;
     color: var(--primary);
 }
 
--content p {
+.expo-card-content p {
     font-size: 0.82rem;
     color: #666;
     margin-bottom: 0.7rem;
@@ -379,7 +379,7 @@ h1, h2, h3, .logo {
     overflow: hidden;
 }
 
--link {
+.expo-card-link {
     color: var(--gold);
     text-decoration: none;
     font-weight: 600;
@@ -387,10 +387,9 @@ h1, h2, h3, .logo {
     transition: color 0.2s;
 }
 
--link:hover {
+.expo-card-link:hover {
     color: var(--primary);
 }
-
 /* ===== AKTUÁLNÍ EXPOZICE ===== */
 .aktualni-expozice {
     padding: 3rem 2rem;
@@ -1049,157 +1048,52 @@ details p {
 }
 
 /* ===== RESPONZIVITA ===== */
-@media (max-width: 768px) {
-    .expo-modal-body {
-        padding: 1.5rem;
-    }
-    .expo-modal-meta {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-    .countdown-glass {
-        padding: 1rem;
-        margin: 0;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    .countdown-value {
-        font-size: 1.5rem;
-    }
-}
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        flex-direction: column;
-        background: rgba(253,250,245,0.97);
-        backdrop-filter: blur(10px);
-        width: 220px;
-        gap: 0;
-        border: 1px solid rgba(197,160,89,0.2);
-        border-radius: 0 0 8px 8px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links li {
-        border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .nav-links li a {
-        display: block;
-        padding: 0.9rem 1.5rem;
-    }
-
-    .burger {
-        display: block;
-    }
-
-    .hero {
-        min-height: 360px;
-        padding: 4rem 1.5rem;
-    }
-
-    .hero h1 {
-        font-size: 2.2rem;
-    }
-
-    .countdown-container {
-        gap: 0.3rem;
-        padding: 0;
-    }
-
-    .countdown-value {
-        font-size: 1.5rem;
-    }
-
-       .countdown-sep {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-    }
-
-    .countdown-item {
-        min-width: 44px;
-    }
-
-    .prehled-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1.4rem;
-        padding: 0 0.5rem;
-    }
-
-    .current-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .current-expo {
-        flex-direction: column;
-        max-height: none;        /* zrušit omezení výšky */
-    }
-
-
-    .current-expo-img {
-        width: 100%;
-        height: 220px;           /* bylo 160px, zvětšíme */
-        min-height: 220px;
-    }
-
-    .current-expo-content {
-        padding: 1rem 1.2rem 1.2rem;
-    }
-
-    .rezervace-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-
-    .info-section {
-        grid-template-columns: 1fr;
-        padding: 3rem 1.5rem;
-    }
-
-    .kontakt-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .kontakt-mapa {
-        height: 240px;
-    }
- .prehled-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1.4rem;
-        padding: 0 0.5rem;
-    }
-
-    .expo-card {
-        aspect-ratio: 4 / 5;   /* trochu kratší než desktop, ale stále karta */
-        width: 100%;
-    }
-
-    .expo-card-img {
-        flex: 1;
-        min-height: 0;
-    }
-
-    .expo-card-content {
-        padding: 1rem 1.2rem;
-        flex-shrink: 0;
-    }
-
-    .expo-card-content h3 {
-        font-size: 1rem;
-        margin-bottom: 0.3rem;
-    }
-
-    .expo-card-content p {
-        font-size: 0.85rem;
-        -webkit-line-clamp: 3;   /* trochu víc textu viditelného */
+.expo-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.13), inset 0 1px 0 rgba(255,255,255,0.9);
 }
 
+.expo-card-img {
+    width: 100%;
+    flex: 1;
+    background: var(--light-gray) center/cover no-repeat;
+    min-height: 0;
+}
+
+.expo-card-content {
+    padding: 1rem 1.2rem 1.1rem;
+    background: rgba(253,250,245,0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(197,160,89,0.18);
+    flex-shrink: 0;
+}
+
+.expo-card-content h3 {
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    color: var(--primary);
+}
+
+.expo-card-content p {
+    font-size: 0.82rem;
+    color: #666;
+    margin-bottom: 0.7rem;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.expo-card-link {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: color 0.2s;
+}
+
+.expo-card-link:hover {
+    color: var(--primary);
+}
