@@ -13,7 +13,7 @@ const timer = setInterval(() => {
 
     if (distance < 0) {
         clearInterval(timer);
-       const countdown = document.querySelector('.countdown-glass');
+        const countdown = document.querySelector('.countdown-glass');
 
         if (countdown) {
             countdown.innerHTML = "<h2>VÝSTAVA ZAHÁJENA!</h2>";
@@ -21,7 +21,7 @@ const timer = setInterval(() => {
     }
 }, 1000);
 
-// ===== CSV DATA (rozšířené o modal info) =====
+// ===== CSV DATA =====
 const exhibitionsData = [
     {
         title: "Antické amfory",
@@ -103,7 +103,7 @@ function loadPrehledExhibitions() {
         container.appendChild(card);
     });
 
-    // Attach modal triggers
+    // Spuštění modálu při kliknutí na odkaz "Více →"
     container.querySelectorAll('.expo-card-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -112,7 +112,6 @@ function loadPrehledExhibitions() {
     });
 }
 
-// Current exhibitions (hardcoded subset, could be extended)
 const currentExhibitions = [
     { title: "Zlatý výběr 2026",   description: "Nejlepší vína letošní sklizně.",      image: "images/sber.jpg" },
     { title: "Historie vinařství",  description: "Od středověku do moderny.",            image: "images/crushinginoldtimes.jpg" }
@@ -135,7 +134,7 @@ function loadCurrentExhibitions() {
     });
 }
 
-// ===== CAROUSEL =====
+// ===== CAROUSEL (SLIDER) =====
 const carouselData = [
     { title: "Archivní sklepy králů", desc: "Exkluzivní prohlídka prostor, kam běžný návštěvník nesmí." },
     { title: "Degustace vín",         desc: "Odborné degustace s vinaři v krásném prostředí." }
@@ -179,7 +178,7 @@ function initCarousel() {
 // ===== VSTUPENKY =====
 const ticketData = {
     zahrady:  { title: "PROHLÍDKA ZAHRAD",   name: "GARDEN TOUR 2026",    price: "250 Kč", image: "images/vilarnau.jpg",           bgColor: "#5a7a5e" },
-    sklepy:   { title: "SKLEPY & DŮM",        name: "CHÂTEAU CLASSIC",     price: "350 Kč", image: "images/uvnitr.jpg",             bgColor: "#6b4f30" },
+    sklepy:   { title: "SKLEPY & DŮM",        name: "CHÂTEAU CLASSIC",     price: "350 Kč", image: "images/uvnitr.jpg",              bgColor: "#6b4f30" },
     degustace:{ title: "DEGUSTACE & TVORBA",  name: "WINE MASTER 2026",    price: "590 Kč", image: "images/makingwine.jpg",         bgColor: "#8a6b2a" },
     bonus:    { title: "VŠE + BONUS PROGRAM", name: "PREMIUM EXPERIENCE",  price: "890 Kč", image: "images/crushinginoldtimes.jpg", bgColor: "#3a4a3e" }
 };
@@ -203,7 +202,7 @@ function updateTicket() {
     if (card) card.style.backgroundColor = data.bgColor;
 }
 
-// ===== EXPO MODAL =====
+// ===== EXPO MODAL (OTEVŘENÍ / ZAVŘENÍ) =====
 function openExpoModal(index) {
     const expo = exhibitionsData[index];
     const overlay = document.getElementById('expo-modal-overlay');
@@ -215,11 +214,14 @@ function openExpoModal(index) {
     document.getElementById('expo-modal-price').textContent = expo.price;
     document.getElementById('expo-modal-desc').textContent = expo.fullDesc;
 
-    const ul = document.getElementById('expo-modal-includes');
-    ul.innerHTML = expo.includes.map(item => `<li>${item}</li>`).join('');
+    // Najde podtřídu ul uvnitř struktury modálu pro vypsání obsahu balíčku
+    const ul = document.querySelector('.expo-modal-includes ul');
+    if (ul) {
+        ul.innerHTML = expo.includes.map(item => `<li>${item}</li>`).join('');
+    }
 
     overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden'; // Zamezí rolování webu na pozadí
 }
 
 function closeExpoModal() {
@@ -235,7 +237,6 @@ function initModal() {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeExpoModal();
     });
-    // Close modal when reservation button clicked
     document.getElementById('expo-modal-reserve')?.addEventListener('click', closeExpoModal);
 }
 
@@ -249,20 +250,18 @@ function initBurger() {
         navLinks.classList.toggle('active');
     });
 
-    // Close when a link is clicked
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
 }
 
-// ===== DATE PICKER: set today as min =====
+// ===== DATE PICKER =====
 function initDatePicker() {
     const dateInput = document.querySelector('input[type="date"]');
     if (!dateInput) return;
     const today = new Date().toISOString().split('T')[0];
     dateInput.min = today;
 
-    // Update ticket date display when changed
     dateInput.addEventListener('change', () => {
         const parts = dateInput.value.split('-');
         if (parts.length === 3) {
