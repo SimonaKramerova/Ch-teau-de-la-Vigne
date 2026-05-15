@@ -36,8 +36,6 @@ const exhibitionsData = [
         image: "images/Antické amfory.jpg",
         dates: "1. 3. 2026 – 31. 8. 2026",
         price: "Zahrnuto ve vstupném",
-        fullDesc: "Prozkoumejte fascinující sbírku amfor a nádob z dob antického Říma a Řecka. Exponáty pocházejí z vykopávek ve středomoří a dokumentují, jak víno hrálo klíčovou roli v každodenním životě starověkých civilizací — od náboženských rituálů po obchod.",
-        includes: ["Komentovaná prohlídka s průvodcem", "Interaktivní mapa obchodních cest", "Repliky nádob k prohlédnutí", "Vzdělávací panel pro děti"]
     },
     {
         title: "Mechanický lis 1890",
@@ -46,8 +44,6 @@ const exhibitionsData = [
         image: "images/Mechanický lis 1890.jpg",
         dates: "Stálá expozice",
         price: "Zahrnuto ve vstupném",
-        fullDesc: "Unikátní dřevěný šroubový lis na víno z roku 1890 je jedním z mála plně funkčních exemplářů svého druhu v Evropě. Jednou měsíčně probíhá živá ukázka lisování hroznů, při níž si návštěvníci mohou celý proces vyzkoušet na vlastní kůži.",
-        includes: ["Živá ukázka lisování (1× měsíčně)", "Výklad o historii vinařské techniky", "Fotografie v dobovém kostýmu", "Ochutnávka historicky lisovaného vína"]
     },
     {
         title: "Víno a Umění",
@@ -56,8 +52,6 @@ const exhibitionsData = [
         image: "images/redwine.jpg",
         dates: "15. 4. 2026 – 15. 9. 2026",
         price: "Zahrnuto ve vstupném",
-        fullDesc: "Výstava představuje díla barokních mistrů, kteří nacházeli inspiraci ve víně, hostinách a slavnostech. Originály i reprodukce z evropských sbírek jsou doplněny o odborný komentář k symbolice vína v malířství 17. a 18. století.",
-        includes: ["Průvodce výstavou v češtině a angličtině", "Audioprůvodce zdarma", "Workshop malby pro skupiny (na objednávku)", "Katalog výstavy v ceně vstupu"]
     },
     {
         title: "Zlatý výběr 2026",
@@ -66,8 +60,6 @@ const exhibitionsData = [
         image: "images/sber.jpg",
         dates: "15. 6. 2026 – 30. 9. 2026",
         price: "Zahrnuto ve vstupném",
-        fullDesc: "Prestižní přehlídka vín letošní sklizně přináší to nejlepší z moravských vinařství. Odborná porota vybrala přes 80 vzorků z více než 200 přihlášených. Každé víno je opatřeno degustační kartou s popisem aroma, chuti a doporučeného párování s jídlem.",
-        includes: ["Přístup ke všem 80 vybraným vínům", "Degustační sklenička s sebou", "Katalog s hodnocením porotců", "Setkání s vinaři každou sobotu 15:00"]
     },
     {
         title: "Sklepy a jejich tajemství",
@@ -76,8 +68,6 @@ const exhibitionsData = [
         image: "images/uvnitr.jpg",
         dates: "Stálá expozice",
         price: "Zahrnuto ve vstupném od 350 Kč",
-        fullDesc: "Historické sklepy châteaux skrývají stovky let starou architekturu a desítky tisíc lahví zrajícího vína. Tato expozice vás provede podzemními chodbami, odhalí tajemství správné teploty a vlhkosti a přiblíží umění šambrování i etiketování prémiových vín.",
-        includes: ["Průchod historickými sklepními chodbami", "Ukázka šambrování vína", "Přístup k archivním ročníkům (bez degustace)", "Fotografování povoleno"]
     },
     {
         title: "Cesta hroznu",
@@ -86,18 +76,16 @@ const exhibitionsData = [
         image: "images/crushinginoldtimes.jpg",
         dates: "1. 5. 2026 – 31. 10. 2026",
         price: "Zahrnuto ve vstupném",
-        fullDesc: "Interaktivní expozice pro celou rodinu mapuje cestu hroznu od vinohradů přes lis, fermentaci a zrání až po hotovou lahev. Každá zastávka nabízí hands-on aktivitu — od třídění hroznů po nasazování korku. Ideální pro cookies a rodinné návštěvy.",
-        includes: ["10 interaktivních stanovišť", "Pracovní listy pro děti zdarma", "Ochutnávka hroznové šťávy", "Skupinové kvízy s cenami"]
     }
 ];
 
-// ===== VÝSTAVY S MODALY =====
+// ===== VÝSTAVY =====
 function loadPrehledExhibitions() {
     const container = document.getElementById('prehled-grid');
     if (!container) return;
-    container.innerHTML = ""; // Vyčištění pro jistotu
-    
-    exhibitionsData.forEach((expo, index) => {
+    container.innerHTML = "";
+
+    exhibitionsData.forEach((expo) => {
         const card = document.createElement('div');
         card.className = 'expo-card';
         card.innerHTML = `
@@ -105,17 +93,9 @@ function loadPrehledExhibitions() {
             <div class="expo-card-content">
                 <h3>${expo.title}</h3>
                 <p>${expo.description}</p>
-                <a href="#" class="expo-card-link" data-index="${index}">Více →</a>
             </div>
         `;
         container.appendChild(card);
-    });
-
-    container.querySelectorAll('.expo-card-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            openExpoModal(parseInt(link.dataset.index));
-        });
     });
 }
 
@@ -128,7 +108,7 @@ function loadCurrentExhibitions() {
     const container = document.getElementById('current-grid');
     if (!container) return;
     container.innerHTML = "";
-    
+
     currentExhibitions.forEach(expo => {
         const card = document.createElement('div');
         card.className = 'current-expo';
@@ -191,68 +171,6 @@ function initCarousel() {
     setInterval(() => goTo(current + 1), 5000);
 }
 
-// ===== EXPO MODAL (ZCELA NEPRŮSTŘELNÁ VERZE) =====
-function openExpoModal(index) {
-    try {
-        const expo = exhibitionsData[index];
-        const overlay = document.getElementById('expo-modal-overlay');
-        if (!overlay || !expo) return;
-
-        // Plnění prvků s kontrolou existence (kdyby náhodou v HTML chybělo ID)
-        const modalImg = document.getElementById('expo-modal-img');
-        if (modalImg) modalImg.style.backgroundImage = `url('${expo.image}')`;
-
-        const categoryEl = document.getElementById('expo-modal-category');
-        if (categoryEl) categoryEl.textContent = expo.category;
-
-        const titleEl = document.getElementById('expo-modal-title');
-        if (titleEl) titleEl.textContent = expo.title;
-
-        const datesEl = document.getElementById('expo-modal-dates');
-        if (datesEl) datesEl.textContent = expo.dates;
-
-        const priceEl = document.getElementById('expo-modal-price');
-        if (priceEl) priceEl.textContent = expo.price;
-
-        const descEl = document.getElementById('expo-modal-desc');
-        if (descEl) descEl.textContent = expo.fullDesc;
-
-        // Bezpečné naplnění seznamu "Co je součástí" pomocí querySelectoru třídy obalu
-        const ul = document.querySelector('.expo-modal-includes ul');
-        if (ul) {
-            ul.innerHTML = expo.includes.map(item => `<li>${item}</li>`).join('');
-        }
-
-        // Aktivace třídy a zamknutí scrollu
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        
-    } catch (error) {
-        console.error("Chyba při otevírání modálu: ", error);
-        // V případě jakékoliv nečekané chyby vrátíme možnost scrollovat web
-        document.body.style.overflow = '';
-    }
-}
-
-function closeExpoModal() {
-    const overlay = document.getElementById('expo-modal-overlay');
-    if (overlay) {
-        overlay.classList.remove('active');
-    }
-    document.body.style.overflow = ''; 
-}
-
-function initModal() {
-    document.getElementById('expo-modal-close')?.addEventListener('click', closeExpoModal);
-    document.getElementById('expo-modal-overlay')?.addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) closeExpoModal();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeExpoModal();
-    });
-    document.getElementById('expo-modal-reserve')?.addEventListener('click', closeExpoModal);
-}
-
 // ===== BURGER MENU =====
 function initBurger() {
     const burger = document.getElementById('burger');
@@ -297,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPrehledExhibitions();
     loadCurrentExhibitions();
     initCarousel();
-    initModal();
     initBurger();
     initDatePicker();
     initForm();
