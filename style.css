@@ -269,7 +269,12 @@ h1, h2, h3, .logo {
     opacity: 0.6;
 }
 
-/* ===== PŘEHLED EXPOZIC ===== */
+/* ==========================================================================
+   ===== PŘEHLED EXPOZIC (DESKTOP & OBECNÉ) =====
+   ========================================================================== */
+/* ==========================================================================
+   ===== PŘEHLED EXPOZIC (DESKTOP & OBECNÉ STYLY) =====
+   ========================================================================== */
 .prehled-expozic {
     padding: 5rem 2rem;
     max-width: 1200px;
@@ -291,7 +296,7 @@ h1, h2, h3, .logo {
 
 .prehled-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* OPRAVENO: Odstraněn !important pro hladký override v mobilu */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 1.8rem;
     justify-content: center;
     width: 100%;
@@ -360,6 +365,119 @@ h1, h2, h3, .logo {
 
 .expo-card-link:hover {
     color: var(--primary);
+}
+
+/* ===== FIX PRO ŠIPKY SLIDERU (PATŘÍ MIMO MEDIA QUERY) ===== */
+.carousel-btn {
+    z-index: 100 !important;       /* Posune šipky bezpečně nad obrázky */
+    pointer-events: auto !important; /* Povolí klikání na prvek */
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   ===== NOVÝ FIX PRO EXPO MODAL (OPRAVA BODU 2 & 5) =====
+   ========================================================================== */
+#expo-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75); /* Tmavé pozadí okolo */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10000; /* Vždy navrchu nad celým webem */
+    
+    /* Vycentrování na střed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    /* Výchozí stav: Skrytý */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Když JavaScript přidá třídu .active */
+.expo-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75); /* Tmavé poloprůhledné pozadí */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 99999; /* Aby byl nad absolutně vším na stránce */
+    
+    /* Vycentrování okna na střed obrazovky */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    /* Výchozí stav: Schovaný a nekliknutelný */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Třída, kterou přidává JavaScript pro zobrazení */
+.expo-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Vnitřní bílá karta modálu */
+.expo-modal {
+    background: #fdfaf5;
+    width: 100%;
+    max-width: 550px;
+    max-height: 90vh; /* Zabrání přetečení na výšku displeje */
+    border-radius: 16px;
+    overflow-y: auto; /* Pokud je text dlouhý, povolí skrolování uvnitř karty */
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Obrázek uvnitř vyskakovacího okna */
+.expo-modal-img {
+    width: 100%;
+    height: 240px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+/* Tělo modálu a texty */
+.expo-modal-body {
+    padding: 1.5rem;
+}
+
+/* Tlačítko pro zavření (křížek v rohu) */
+.expo-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 /* ===== AKTUÁLNÍ EXPOZICE ===== */
@@ -432,6 +550,16 @@ h1, h2, h3, .logo {
     align-items: center;
     justify-content: center;
     padding: 4rem 2rem;
+}
+
+.carousel-btn prev {
+
+z-index: 10; /* Posune šipky nad obrázek a text */
+
+pointer-events: auto; /* Vynuť, aby na ně šlo klikat */
+
+cursor: pointer;
+
 }
 
 .carousel {
@@ -611,6 +739,11 @@ h1, h2, h3, .logo {
     background: rgba(255,255,255,0.12);
     color: white;
     backdrop-filter: blur(4px);
+}
+
+.rezervace-form select option {
+    color: #222222 !important;          /* Tmavé písmo pro možnosti */
+    background-color: #ffffff !important; /* Bílé pozadí pro možnosti */
 }
 
 .btn-reserve {
@@ -817,21 +950,34 @@ details p {
         padding-right: 1.2rem;
     }
 
-    /* NÁŠ PŘEHLED EXPOZIC (SLOUPCE POD SEBOU PODLE WIREFRAMU) */
+    /* NÁŠ PŘEHLED EXPOZIC (DLOUHÉ KARTY VEDLE SEBE: OBRÁZEK VLEVO, TEXT VPRAVO) */
     .prehled-grid {
-        grid-template-columns: 1fr; /* OPRAVENO: padá čistě do jednoho sloupce */
+        grid-template-columns: 1fr; 
         gap: 1.5rem;
     }
 
     .expo-card {
         aspect-ratio: auto;
+        flex-direction: row; /* Poskládá vnitřek karty vedle sebe */
+        align-items: stretch;
+        background: rgba(255,255,255,0.8);
     }
 
     .expo-card-img {
-        height: 220px;
+        width: 120px; /* Fixní šířka obrázku na mobilu, aby se nedeformoval */
+        min-width: 120px;
+        height: auto;
+        min-height: 100%;
     }
 
-    /* AKTUÁLNÍ EXPOZICE / VÝSTAVY (OPRAVA OŘEZÁVÁNÍ TEXTU) */
+    .expo-card-content {
+        flex: 1;
+        padding: 1rem;
+        border-top: none;
+        border-left: 1px solid rgba(197,160,89,0.18);
+    }
+
+    /* AKTUÁLNÍ EXPOZICE / VÝSTAVY */
     .current-grid {
         grid-template-columns: 1fr;
         gap: 1.2rem;
@@ -839,7 +985,7 @@ details p {
 
     .current-expo {
         flex-direction: row; 
-        max-height: none; /* OPRAVA: Výška se přizpůsobí textu, nic se neořízne */
+        max-height: none; 
         height: auto;
         padding: 0.5rem 0;
     }
@@ -853,9 +999,23 @@ details p {
     }
 
     .current-expo-content p {
-        -webkit-line-clamp: 3; /* Povolí více řádků textu na mobilu */
+        -webkit-line-clamp: 3; 
     }
 
+    /* PRÉMIOVÉ VÝSTAVY */
+    .premiumne-vystavy {
+        min-height: 420px;
+    }
+
+    .carousel-caption h3 {
+        font-size: 1.4rem;
+    }
+    
+    /* FIX PRO SLIDESHOW ŠIPKY (Aby na ně šlo kliknout) */
+    #carousel-prev, #carousel-next {
+        z-index: 100 !important;
+        pointer-events: auto !important;
+    }
     /* PRÉMIOVÉ VÝSTAVY */
     .premiumne-vystavy {
         min-height: 420px;
