@@ -1080,7 +1080,6 @@ details p {
     /* Aby na mobilech zůstaly karty 3 vedle sebe a nezpůsobily přetečení obrazovky, 
        zmenšíme jejich velikost a písmo */
     .prehled-grid {
-        grid-template-columns: repeat(3, minmax(0, 110px));
         gap: 0.4rem;
         padding: 0;
     }
