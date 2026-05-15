@@ -420,13 +420,13 @@ h1, h2, h3, .logo {
 /* ===== CAROUSEL / PRÉMIOVÉ ===== */
 .premiumne-vystavy {
     position: relative;
-    min-height: 500px;
+    min-height: 820px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
 }
 
 .carousel {
@@ -551,19 +551,35 @@ h1, h2, h3, .logo {
 
 /* ===== REZERVACE ===== */
 .rezervace {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    position: relative;
     min-height: 520px;
     overflow: hidden;
 }
 
-/* Levý panel — tmavý s formulářem */
+/* Obrázek pokrývá celou sekci na pozadí */
+.rezervace-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--primary) center/cover no-repeat;
+    z-index: 0;
+}
+
+/* Překryv — gradient zleva plná barva → doprava průhledná */
 .rezervace-panel {
-    background: #1e3020;
-    padding: 4rem 3rem;
+    position: relative;
+    z-index: 1;
+    width: 55%;
+    min-height: 520px;
+    padding: 4rem 3.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: linear-gradient(to right,
+        #1e3020 0%,
+        #1e3020 70%,
+        rgba(30,48,32,0.6) 88%,
+        transparent 100%
+    );
 }
 
 .rezervace-panel h2 {
@@ -574,17 +590,19 @@ h1, h2, h3, .logo {
     margin-bottom: 1.8rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+    text-align: center;
 }
 
 .rezervace-form form {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.7rem;
+    max-width: 360px;
 }
 
 .rezervace-form input,
 .rezervace-form select {
-    padding: 0.8rem 1rem;
+    padding: 0.75rem 1rem;
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 4px;
     font-size: 0.88rem;
@@ -592,6 +610,7 @@ h1, h2, h3, .logo {
     background: rgba(255,255,255,0.12);
     color: white;
     backdrop-filter: blur(4px);
+    width: 100%;
 }
 
 .rezervace-form select option {
@@ -600,37 +619,26 @@ h1, h2, h3, .logo {
 }
 
 .btn-reserve {
-    margin-top: 0.4rem;
-    background: rgba(197,160,89,0.25);
+    margin-top: 0.3rem;
+    background: rgba(197,160,89,0.3);
     color: white;
     padding: 0.9rem;
-    border: 1px solid rgba(197,160,89,0.6);
+    border: 1px solid rgba(197,160,89,0.65);
     border-radius: 4px;
     font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
     transition: background 0.25s;
+    width: 100%;
 }
 
 .btn-reserve:hover {
-    background: rgba(197,160,89,0.45);
+    background: rgba(197,160,89,0.5);
 }
 
-/* Pravý panel — obrázek na pozadí */
-.rezervace-bg {
-    background: var(--primary) center/cover no-repeat;
-    min-height: 300px;
-}
-
-/* Skryje starý overlay — není potřeba */
-.rezervace-overlay {
-    display: none;
-}
-
-/* Skryje starý rezervace-inner — nahrazen rezervace-panel */
-.rezervace-inner {
-    display: none;
-}
+/* Skryje starý overlay a inner */
+.rezervace-overlay { display: none; }
+.rezervace-inner    { display: none; }
 
 /* ===== FAQ & RECENZE ===== */
 .info-section {
@@ -891,17 +899,20 @@ details p {
     }
 
     /* REZERVACE */
-    .rezervace {
-        grid-template-columns: 1fr;
-    }
-
-    .rezervace-bg {
-        min-height: 200px;
-        order: -1;
-    }
-
     .rezervace-panel {
+        width: 100%;
+        min-height: auto;
         padding: 2.5rem 1.2rem;
+        background: linear-gradient(to bottom,
+            #1e3020 0%,
+            #1e3020 75%,
+            rgba(30,48,32,0.7) 90%,
+            transparent 100%
+        );
+    }
+
+    .rezervace-form form {
+        max-width: 100%;
     }
 
     /* FAQ & FOOTER */
