@@ -551,38 +551,24 @@ h1, h2, h3, .logo {
 
 /* ===== REZERVACE ===== */
 .rezervace {
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     min-height: 520px;
-    display: flex;
-    align-items: center;
     overflow: hidden;
 }
 
-.rezervace-bg {
-    position: absolute;
-    inset: 0;
-    background: var(--primary) center/cover no-repeat;
-    z-index: 0;
+/* Levý panel — tmavý s formulářem */
+.rezervace-panel {
+    background: #1e3020;
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.rezervace-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(30, 48, 32, 0.97) 0%, rgba(30, 48, 32, 0.9) 30%, rgba(30, 48, 32, 0.5) 60%, transparent 100%);
-    z-index: 1;
-}
-
-.rezervace-inner {
-    position: relative;
-    z-index: 2;
-    padding: 4rem 5%;
-    width: 100%;
-    max-width: 560px;
-}
-
-.rezervace-inner h2 {
+.rezervace-panel h2 {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 1.8rem;
@@ -623,6 +609,27 @@ h1, h2, h3, .logo {
     font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
+    transition: background 0.25s;
+}
+
+.btn-reserve:hover {
+    background: rgba(197,160,89,0.45);
+}
+
+/* Pravý panel — obrázek na pozadí */
+.rezervace-bg {
+    background: var(--primary) center/cover no-repeat;
+    min-height: 300px;
+}
+
+/* Skryje starý overlay — není potřeba */
+.rezervace-overlay {
+    display: none;
+}
+
+/* Skryje starý rezervace-inner — nahrazen rezervace-panel */
+.rezervace-inner {
+    display: none;
 }
 
 /* ===== FAQ & RECENZE ===== */
@@ -885,16 +892,16 @@ details p {
 
     /* REZERVACE */
     .rezervace {
-        min-height: auto;
+        grid-template-columns: 1fr;
     }
 
-    .rezervace-overlay {
-        background: rgba(20,30,20,0.85);
+    .rezervace-bg {
+        min-height: 200px;
+        order: -1;
     }
 
-    .rezervace-inner {
-        max-width: 100%;
-        padding: 3rem 1.2rem;
+    .rezervace-panel {
+        padding: 2.5rem 1.2rem;
     }
 
     /* FAQ & FOOTER */
