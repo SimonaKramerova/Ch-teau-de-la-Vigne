@@ -265,12 +265,16 @@ function initForm() {
         e.preventDefault();
         alert('Vstupenky byly odeslány! Děkujeme za rezervaci.');
         this.reset();
-        updateTicket();
     });
 }
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
+    const rezervaceBg = document.getElementById('rezervace-bg');
+    if (rezervaceBg) {
+        rezervaceBg.style.backgroundImage = "url('images/vinárna.jpg')";
+    }
+
     loadPrehledExhibitions();
     loadCurrentExhibitions();
     initCarousel();
@@ -278,10 +282,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initBurger();
     initDatePicker();
     initForm();
-
-    const ticketTypeSelect = document.getElementById('ticket-type');
-    if (ticketTypeSelect) {
-        ticketTypeSelect.addEventListener('change', updateTicket);
-        updateTicket();
-    }
 });
