@@ -1048,20 +1048,24 @@ details p {
 
 /* ===== RESPONZIVITA ===== */
 @media (max-width: 768px) {
+
     .expo-modal-body {
         padding: 1.5rem;
     }
+
     .expo-modal-meta {
         flex-direction: column;
         gap: 0.8rem;
     }
+
     .countdown-glass {
         padding: 1.2rem 1.5rem;
     }
+
     .countdown-value {
         font-size: 1.7rem;
     }
-}
+
     .nav-links {
         display: none;
         position: absolute;
@@ -1127,14 +1131,6 @@ details p {
     .current-expo-img {
         width: 100%;
         height: 160px;
-    }
-
-    .rezervace-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
     }
 
     .info-section {
