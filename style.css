@@ -154,6 +154,49 @@ h1, h2, h3, .logo {
     background-color: #3a4a3a;
     background-size: cover;
     background-position: center;
+    padding: 6rem 2rem;
+    text-align: center;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(20,30,20,0.65) 0%, rgba(40,55,40,0.55) 100%);
+    z-index: 0;
+}
+
+.hero-content {
+    max-width: 560px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.hero p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+}
+
+/* ===== HERO ===== */
+.hero {
+    background-color: #3a4a3a;
+    background-size: cover;
+    background-position: center;
     padding: 5rem 2rem 4rem;
     text-align: center;
     min-height: 580px;
@@ -180,20 +223,6 @@ h1, h2, h3, .logo {
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
-}
-
-.hero h1 {
-    font-size: 3.2rem;
-    color: white;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.hero p {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.8);
-    margin-bottom: 1rem;
-    letter-spacing: 0.05em;
 }
 
 /* Glass countdown inside hero */
@@ -269,7 +298,7 @@ h1, h2, h3, .logo {
     opacity: 0.6;
 }
 
-/* ===== PŘEHLED EXPOZIC (HRACÍ KARTY) ===== */
+/* ===== PŘEHLED EXPOZIC ===== */
 .prehled-expozic {
     padding: 5rem 2rem;
     max-width: 1200px;
@@ -291,67 +320,59 @@ h1, h2, h3, .logo {
 
 .prehled-grid {
     display: grid;
-    /* Fixní mřížka 3 sloupců s maximální šířkou karty 320px pro zachování štíhlého vzhledu */
-    grid-template-columns: repeat(3, minmax(0, 320px));
-    gap: 2rem;
+    grid-template-columns: 30% 30% 30% !important;
+    gap: 1.8rem;
     justify-content: center;
     width: 100%;
 }
 
 .expo-card {
     min-width: 0;
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    /* Jemný zlatavý lem a zakulacení jako u hrací karty */
-    border: 1px solid rgba(197, 160, 89, 0.3);
-    border-radius: 16px;
+    display: flex !important;
+    flex-direction: column !important;
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 12px;
     overflow: hidden;
-    /* Hlubší stín pro pocit fyzické karty položené na stole */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.02);
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
-    /* Klasický stojatý herní poměr stran */
-    aspect-ratio: 1 / 1.45;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .expo-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 18px 40px rgba(74, 93, 78, 0.15);
-    border-color: var(--gold);
+    transform: translateY(-6px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.13), inset 0 1px 0 rgba(255,255,255,0.9);
 }
 
 .expo-card-img {
     width: 100%;
-    height: 45%; /* Obrázek zabírá necelou polovinu výšky karty */
+    height: 160px;
     flex-shrink: 0;
     background: var(--light-gray) center/cover no-repeat;
 }
 
 .expo-card-content {
-    flex: 1;
-    padding: 1.4rem;
-    background: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center; /* Centrování textu skvěle pasuje k hracím kartám */
+    padding: 1rem 1.2rem 1.1rem;
+    background: rgba(253,250,245,0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(197,160,89,0.18);
 }
 
 .expo-card-content h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
     color: var(--primary);
-    line-height: 1.3;
 }
 
 .expo-card-content p {
-    font-size: 0.85rem;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    /* Zamezí přetečení textu u extrémně dlouhých popisků v malém prostoru karty */
+    font-size: 0.82rem;
+    color: #666;
+    margin-bottom: 0.7rem;
+    line-height: 1.45;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -360,12 +381,8 @@ h1, h2, h3, .logo {
     color: var(--gold);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-size: 0.88rem;
     transition: color 0.2s;
-    margin-top: auto;
-    padding-top: 0.5rem;
 }
 
 .expo-card-link:hover {
@@ -483,6 +500,7 @@ h1, h2, h3, .logo {
     opacity: 0.85;
 }
 
+/* Glass carousel buttons */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -645,6 +663,7 @@ h1, h2, h3, .logo {
     box-shadow: 0 0 0 3px rgba(197,160,89,0.15);
 }
 
+/* Reserve button - glass on dark bg of the form section */
 .btn-reserve {
     background: var(--primary);
     color: white;
@@ -654,6 +673,7 @@ h1, h2, h3, .logo {
     font-weight: 600;
     font-size: 0.95rem;
     cursor: pointer;
+    /* Glass overlay on solid color */
     border: 1px solid rgba(255,255,255,0.2);
     box-shadow:
         0 4px 14px rgba(74,93,78,0.4),
@@ -691,7 +711,11 @@ h1, h2, h3, .logo {
     align-items: start;
 }
 
-.faq, .reviews {
+.faq {
+    min-width: 0; /* prevents grid blowout */
+}
+
+.reviews {
     min-width: 0;
 }
 
@@ -722,11 +746,13 @@ details summary {
     color: var(--primary);
     padding: 1rem 0;
     line-height: 1.4;
+    /* Remove all native markers */
     list-style: none;
     -webkit-appearance: none;
     appearance: none;
 }
 
+/* Remove native arrow in all browsers */
 details summary::-webkit-details-marker,
 details summary::marker {
     display: none;
@@ -1003,20 +1029,12 @@ details p {
 
 /* ===== TABLET ===== */
 @media (max-width: 1024px) and (min-width: 769px) {
-    /* Ponecháno 3 vedle sebe a zhuštěné přesně podle zadání */
     .prehled-grid {
-        grid-template-columns: repeat(3, minmax(0, 230px));
-        gap: 1rem;
-    }
-    .expo-card-content {
-        padding: 0.9rem;
-    }
-    .expo-card-content h3 {
-        font-size: 0.95rem;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* ===== RESPONZIVITA (OPRAVENÁ SYNTAXE) ===== */
+/* ===== RESPONZIVITA ===== */
 @media (max-width: 768px) {
     .expo-modal-body {
         padding: 1.5rem;
@@ -1031,17 +1049,18 @@ details p {
     .countdown-value {
         font-size: 1.7rem;
     }
+}
     .nav-links {
         display: none;
         position: absolute;
         top: 60px;
         right: 0;
         flex-direction: column;
-        background: rgba(253, 250, 245, 0.97);
+        background: rgba(253,250,245,0.97);
         backdrop-filter: blur(10px);
         width: 220px;
         gap: 0;
-        border: 1px solid rgba(197, 160, 89, 0.2);
+        border: 1px solid rgba(197,160,89,0.2);
         border-radius: 0 0 8px 8px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
@@ -1077,27 +1096,12 @@ details p {
         padding: 1.5rem;
     }
 
-    /* Aby na mobilech zůstaly karty 3 vedle sebe a nezpůsobily přetečení obrazovky, 
-       zmenšíme jejich velikost a písmo */
+    .countdown-value {
+        font-size: 1.6rem;
+    }
+
     .prehled-grid {
-        gap: 0.4rem;
-        padding: 0;
-    }
-    .expo-card {
-        border-radius: 8px;
-    }
-    .expo-card-content {
-        padding: 0.5rem;
-    }
-    .expo-card-content h3 {
-        font-size: 0.65rem;
-        margin-bottom: 0.1rem;
-    }
-    .expo-card-content p {
-        display: none; /* Schováme popisky na mobilu, aby se zachoval tvar karty */
-    }
-    .expo-card-link {
-        font-size: 0.55rem;
+        grid-template-columns: 1fr;
     }
 
     .current-grid {
@@ -1133,4 +1137,4 @@ details p {
     .kontakt-mapa {
         height: 240px;
     }
-}
+} 
