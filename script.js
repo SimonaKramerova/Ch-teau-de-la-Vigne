@@ -6,15 +6,21 @@ const timer = setInterval(() => {
     const distance = countdownDate - now;
     const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
 
-    document.getElementById("days").innerText    = pad(Math.floor(distance / (1000 * 60 * 60 * 24)));
-    document.getElementById("hours").innerText   = pad(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-    document.getElementById("minutes").innerText = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
-    document.getElementById("seconds").innerText = pad(Math.floor((distance % (1000 * 60)) / 1000));
+    const dEl = document.getElementById("days");
+    const hEl = document.getElementById("hours");
+    const mEl = document.getElementById("minutes");
+    const sEl = document.getElementById("seconds");
+
+    if (dEl && hEl && mEl && sEl) {
+        dEl.innerText    = pad(Math.floor(distance / (1000 * 60 * 60 * 24)));
+        hEl.innerText   = pad(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+        mEl.innerText = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+        sEl.innerText = pad(Math.floor((distance % (1000 * 60)) / 1000));
+    }
 
     if (distance < 0) {
         clearInterval(timer);
         const countdown = document.querySelector('.countdown-glass');
-
         if (countdown) {
             countdown.innerHTML = "<h2>VÝSTAVA ZAHÁJENA!</h2>";
         }
@@ -65,7 +71,7 @@ const exhibitionsData = [
     },
     {
         title: "Sklepy a jejich tajemství",
-        description: "Podzemní svět, kde zraje víno po staletis.",
+        description: "Podzemní svět, kde zraje víno po staletí.",
         category: "Architektura",
         image: "images/uvnitr.jpg",
         dates: "Stálá expozice",
@@ -80,7 +86,7 @@ const exhibitionsData = [
         image: "images/crushinginoldtimes.jpg",
         dates: "1. 5. 2026 – 31. 10. 2026",
         price: "Zahrnuto ve vstupném",
-        fullDesc: "Interaktivní expozice pro celou rodinu mapuje cestu hroznu od vinohradů přes lis, fermentaci a zrání až po hotovou lahev. Každá zastávka nabízí hands-on aktivitu — od třídění hroznů po nasazování korku. Ideální pro školy a rodinné návštěvy.",
+        fullDesc: "Interaktivní expozice pro celou rodinu mapuje cestu hroznu od vinohradů přes lis, fermentaci a zrání až po hotovou lahev. Každá zastávka nabízí hands-on aktivitu — od třídění hroznů po nasazování korku. Ideální pro cookies a rodinné návštěvy.",
         includes: ["10 interaktivních stanovišť", "Pracovní listy pro děti zdarma", "Ochutnávka hroznové šťávy", "Skupinové kvízy s cenami"]
     }
 ];
@@ -89,11 +95,13 @@ const exhibitionsData = [
 function loadPrehledExhibitions() {
     const container = document.getElementById('prehled-grid');
     if (!container) return;
+    container.innerHTML = ""; // Vyčištění pro jistotu
+    
     exhibitionsData.forEach((expo, index) => {
         const card = document.createElement('div');
         card.className = 'expo-card';
         card.innerHTML = `
-            <div class="expo-card-img" style="background-image:url('${expo.image}'); background-size:cover; background-position:center;"></div>
+            <div class="expo-card-img" style="background-image:url('${expo.image}');"></div>
             <div class="expo-card-content">
                 <h3>${expo.title}</h3>
                 <p>${expo.description}</p>
@@ -119,11 +127,13 @@ const currentExhibitions = [
 function loadCurrentExhibitions() {
     const container = document.getElementById('current-grid');
     if (!container) return;
+    container.innerHTML = "";
+    
     currentExhibitions.forEach(expo => {
         const card = document.createElement('div');
         card.className = 'current-expo';
         card.innerHTML = `
-            <div class="current-expo-img" style="background-image:url('${expo.image}'); background-size:cover; background-position:center;"></div>
+            <div class="current-expo-img" style="background-image:url('${expo.image}');"></div>
             <div class="current-expo-content">
                 <h3>${expo.title}</h3>
                 <p>${expo.description}</p>
@@ -149,10 +159,13 @@ function initCarousel() {
 
     function updateCaption(i) {
         if (!caption || !carouselData[i]) return;
-        caption.querySelector('h3').textContent = carouselData[i].title;
-        caption.querySelector('p').textContent  = carouselData[i].desc;
+        const h3 = caption.querySelector('h3');
+        const p = caption.querySelector('p');
+        if (h3) h3.textContent = carouselData[i].title;
+        if (p) p.textContent  = carouselData[i].desc;
     }
 
+    dotsContainer.innerHTML = "";
     slides.forEach((_, i) => {
         const dot = document.createElement('span');
         dot.className = 'dot' + (i === 0 ? ' active' : '');
@@ -162,10 +175,14 @@ function initCarousel() {
 
     function goTo(index) {
         slides[current].classList.remove('active');
-        dotsContainer.children[current].classList.remove('active');
+        if (dotsContainer.children[current]) {
+            dotsContainer.children[current].classList.remove('active');
+        }
         current = (index + slides.length) % slides.length;
         slides[current].classList.add('active');
-        dotsContainer.children[current].classList.add('active');
+        if (dotsContainer.children[current]) {
+            dotsContainer.children[current].classList.add('active');
+        }
         updateCaption(current);
     }
 
@@ -174,40 +191,47 @@ function initCarousel() {
     setInterval(() => goTo(current + 1), 5000);
 }
 
-// ===== EXPO MODAL (OPRAVENO PRO TVOJE HTML) =====
+// ===== EXPO MODAL (ZCELA NEPRŮSTŘELNÁ VERZE) =====
 function openExpoModal(index) {
-    const expo = exhibitionsData[index];
-    const overlay = document.getElementById('expo-modal-overlay');
-    if (!overlay || !expo) return;
+    try {
+        const expo = exhibitionsData[index];
+        const overlay = document.getElementById('expo-modal-overlay');
+        if (!overlay || !expo) return;
 
-    // Bezpečné naplnění textů a obrázku podle přesných ID z tvého HTML
-    const modalImg = document.getElementById('expo-modal-img');
-    if (modalImg) modalImg.style.backgroundImage = `url('${expo.image}')`;
+        // Plnění prvků s kontrolou existence (kdyby náhodou v HTML chybělo ID)
+        const modalImg = document.getElementById('expo-modal-img');
+        if (modalImg) modalImg.style.backgroundImage = `url('${expo.image}')`;
 
-    const categoryEl = document.getElementById('expo-modal-category');
-    if (categoryEl) categoryEl.textContent = expo.category;
+        const categoryEl = document.getElementById('expo-modal-category');
+        if (categoryEl) categoryEl.textContent = expo.category;
 
-    const titleEl = document.getElementById('expo-modal-title');
-    if (titleEl) titleEl.textContent = expo.title;
+        const titleEl = document.getElementById('expo-modal-title');
+        if (titleEl) titleEl.textContent = expo.title;
 
-    const datesEl = document.getElementById('expo-modal-dates');
-    if (datesEl) datesEl.textContent = expo.dates;
+        const datesEl = document.getElementById('expo-modal-dates');
+        if (datesEl) datesEl.textContent = expo.dates;
 
-    const priceEl = document.getElementById('expo-modal-price');
-    if (priceEl) priceEl.textContent = expo.price;
+        const priceEl = document.getElementById('expo-modal-price');
+        if (priceEl) priceEl.textContent = expo.price;
 
-    const descEl = document.getElementById('expo-modal-desc');
-    if (descEl) descEl.textContent = expo.fullDesc;
+        const descEl = document.getElementById('expo-modal-desc');
+        if (descEl) descEl.textContent = expo.fullDesc;
 
-    // Cílení přímo na ID seznamu "Co je součástí" z tvého HTML (id="expo-modal-includes")
-    const ul = document.getElementById('expo-modal-includes');
-    if (ul) {
-        ul.innerHTML = expo.includes.map(item => `<li>${item}</li>`).join('');
+        // Bezpečné naplnění seznamu "Co je součástí" pomocí querySelectoru třídy obalu
+        const ul = document.querySelector('.expo-modal-includes ul');
+        if (ul) {
+            ul.innerHTML = expo.includes.map(item => `<li>${item}</li>`).join('');
+        }
+
+        // Aktivace třídy a zamknutí scrollu
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+    } catch (error) {
+        console.error("Chyba při otevírání modálu: ", error);
+        // V případě jakékoliv nečekané chyby vrátíme možnost scrollovat web
+        document.body.style.overflow = '';
     }
-
-    // Zobrazení a zamknutí scrolování na pozadí
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
 }
 
 function closeExpoModal() {
@@ -215,7 +239,7 @@ function closeExpoModal() {
     if (overlay) {
         overlay.classList.remove('active');
     }
-    document.body.style.overflow = ''; // Obnovení scrolování stránky
+    document.body.style.overflow = ''; 
 }
 
 function initModal() {
