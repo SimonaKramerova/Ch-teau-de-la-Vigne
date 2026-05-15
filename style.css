@@ -560,7 +560,7 @@ h1, h2, h3, .logo {
 .rezervace-bg {
     position: absolute;
     inset: 0;
-    background: url('images/widewine.jpg') center/cover no-repeat;
+    background: url('images/vinárna.jpg') center/cover no-repeat;
     z-index: 0;
 }
 
