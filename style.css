@@ -660,6 +660,9 @@ h1, h2, h3, .logo {
     z-index: 3;
     text-align: center;
     color: white;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .carousel-caption h3 {
