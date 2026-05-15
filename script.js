@@ -13,7 +13,11 @@ const timer = setInterval(() => {
 
     if (distance < 0) {
         clearInterval(timer);
-        document.querySelector('.nova-vystava').innerHTML = "<h2>VÝSTAVA ZAHÁJENA!</h2>";
+       const countdown = document.querySelector('.countdown-glass');
+
+        if (countdown) {
+            countdown.innerHTML = "<h2>VÝSTAVA ZAHÁJENA!</h2>";
+        }
     }
 }, 1000);
 
