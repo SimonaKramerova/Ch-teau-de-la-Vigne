@@ -207,11 +207,6 @@ function initForm() {
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
-    const rezervaceBg = document.getElementById('rezervace-bg');
-    if (rezervaceBg) {
-        rezervaceBg.style.backgroundImage = "url('images/vinárna.jpg')";
-    }
-
     loadPrehledExhibitions();
     loadCurrentExhibitions();
     initCarousel();
