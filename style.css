@@ -1071,8 +1071,7 @@ details p {
     }
 
     #carousel-prev, #carousel-next {
-        z-index: 100 !important;
-        pointer-events: auto !important;
+        display: none;
     }
 
     /* REZERVACE */
