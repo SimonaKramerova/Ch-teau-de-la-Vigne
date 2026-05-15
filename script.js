@@ -132,14 +132,25 @@ function loadCurrentExhibitions() {
 }
 
 // ===== CAROUSEL =====
+const carouselData = [
+    { title: "Archivní sklepy králů", desc: "Exkluzivní prohlídka prostor, kam běžný návštěvník nesmí." },
+    { title: "Degustace vín",         desc: "Odborné degustace s vinaři v krásném prostředí." }
+];
+
 function initCarousel() {
     const slides = document.querySelectorAll('.carousel-slide');
     const dotsContainer = document.getElementById('carousel-dots');
+    const caption = document.getElementById('carousel-caption');
     if (!slides.length || !dotsContainer) return;
 
     let current = 0;
 
-    // Build dots
+    function updateCaption(i) {
+        if (!caption || !carouselData[i]) return;
+        caption.querySelector('h3').textContent = carouselData[i].title;
+        caption.querySelector('p').textContent  = carouselData[i].desc;
+    }
+
     slides.forEach((_, i) => {
         const dot = document.createElement('span');
         dot.className = 'dot' + (i === 0 ? ' active' : '');
@@ -153,12 +164,11 @@ function initCarousel() {
         current = (index + slides.length) % slides.length;
         slides[current].classList.add('active');
         dotsContainer.children[current].classList.add('active');
+        updateCaption(current);
     }
 
     document.getElementById('carousel-prev')?.addEventListener('click', () => goTo(current - 1));
     document.getElementById('carousel-next')?.addEventListener('click', () => goTo(current + 1));
-
-    // Auto-advance every 5s
     setInterval(() => goTo(current + 1), 5000);
 }
 
